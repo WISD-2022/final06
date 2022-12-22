@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedBigInteger('team_id');
+            $table->foreign('team_id')->references('id')->on('Teams');
+            $table->string('name',20);
+            $table->string('student_id',20);
+            $table->string('sex',20);
+            $table->string('number',20);
+
         });
     }
 

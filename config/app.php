@@ -214,4 +214,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    //指定Faker使用zh_TW語言
+    'faker'=>'zh_TW',
+
 ];
