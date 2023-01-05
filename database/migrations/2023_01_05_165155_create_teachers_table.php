@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('department_id');    //科系編號
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->string('class',20); //班別
-            $table->integer('admission');   //入學年度
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('teachers');
     }
 };

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',20);
+            $table->id();   //編號
+            $table->string('name',20);  //科系名稱
         });
     }
 

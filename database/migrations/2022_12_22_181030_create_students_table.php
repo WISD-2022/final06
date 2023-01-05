@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('department_id');
+            $table->id();   //編號
+            $table->unsignedBigInteger('department_id');    //科系編號
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->unsignedBigInteger('team_id');
+            $table->unsignedBigInteger('team_id');  //班級編號
             $table->foreign('team_id')->references('id')->on('Teams');
-            $table->string('name',20);
-            $table->string('student_id',20);
-            $table->string('sex',20);
-            $table->string('number',20);
+            $table->string('name',20);  //姓名
+            $table->string('student_id',20);    //學號
+            $table->string('sex',20);   //性別
+            $table->string('number',20);    //身分證字號
 
         });
     }
