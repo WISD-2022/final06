@@ -16,8 +16,13 @@ class TeamFactory extends Factory
      */
     public function definition()
     {
+        do{
+            $year=$this->faker->year();
+            $a=substr($year,-4,-2);
+        }while($a=='19');
         return [
-            //
+            'class'=>$this->faker->text(20),
+            'admission'=>$this->faker->year(),
         ];
     }
 }
