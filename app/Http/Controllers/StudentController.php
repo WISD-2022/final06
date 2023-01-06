@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
     public function index()
     {
         return view('students.index');
     }
-
+    public function list()
+    {
+        return view('students.list');
+    }
     public function create()
     {
         return view('students.create');
@@ -36,7 +40,7 @@ class StudentController extends Controller
             //把檔案儲存到公開資料夾
             $request->file('picture')->move(public_path('/images'),$imageName);
         }
-        //登入者身分
+        //登入者身分(未完成)
 
         //取得現在時間
         $application_date=date('y/n/j');
@@ -51,7 +55,7 @@ class StudentController extends Controller
             'end_time'=>$request->end_time,
             'remark'=>$request->remark,
         ]);
-        return $application_date;
+        return redirect()->route('students.index');
     }
 
     /**

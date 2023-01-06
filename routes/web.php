@@ -31,6 +31,7 @@ Route::middleware([
 //學生
 Route::prefix('students')->name('students.')->group(function(){
     Route::get('/',[StudentController::class,'index'])->name('index');//學生首頁
+    Route::get('/list',[StudentController::class,'list'])->name('list');//假單列表
     Route::get('/create',[StudentController::class,'create'])->name('create');//新增假單
     Route::post('/',[StudentController::class,'store'])->name('store');//新增假單
     Route::get('/test',function (){
