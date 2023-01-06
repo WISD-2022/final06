@@ -15,6 +15,7 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
+
         Department::created([
             [
                 'name'=>'資訊管理系',

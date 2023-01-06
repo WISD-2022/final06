@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//學生
+Route::prefix('students')->name('students.')->group(function(){
+    Route::get('/',[StudentController::class,'index'])->name('index');//學生首頁
+    Route::get('/test',function (){return 123456;});
+});
+
