@@ -22,5 +22,9 @@ class Leave extends Model
         'check_date',
         'remark',
     ];
+    public function student(){
+        //一張假單只有一個學生
+        return $this->belongsTo(Student::class);
+    }
     public $timestamps = false;//不用儲存建立時間及修改時間
 }
