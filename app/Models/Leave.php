@@ -11,7 +11,7 @@ class Leave extends Model
     protected $fillable=[
         'id',
         'student_id',
-        'application',
+        'application_date',
         'leave',
         'reason',
         'picture',

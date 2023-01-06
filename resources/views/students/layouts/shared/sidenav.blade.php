@@ -13,6 +13,11 @@
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     查看假單
+                </a><a class="nav-link" href="{{route('students.create')}}">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    新增假單
                 </a>
             </div>
         </div>

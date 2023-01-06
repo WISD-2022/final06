@@ -2,40 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Leave;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('students.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //資料驗證
+        $this->validate($request,[
+            'leave'=>'required',
+            'start_time'=>'required|date',
+            'end_time'=>'required|date',
+            'reason'=>'required|max:255',
+            'remark'=>'required|max:255',
+            'picture'=>'image',
+        ]);
+        //儲存圖片
+        if ($request->hasFile('picture')){
+            //自訂檔案名稱
+            $imageName = time().'.'.$request->file('picture')->extension();
+            //把檔案儲存到公開資料夾
+            $request->file('picture')->move(public_path('/images'),$imageName);
+        }
+        //登入者身分
+
+        //取得現在時間
+        $application_date=date('y/n/j');
+        //儲存資料
+        Leave::create([
+            'student_id'=>'1',//待修改
+            'application_date'=>$application_date,
+            'leave'=>$request->leave,
+            'reason'=>$request->reason,
+            'picture'=>$imageName,
+            'start_time'=>$request->start_time,
+            'end_time'=>$request->end_time,
+            'remark'=>$request->remark,
+        ]);
+        return $application_date;
     }
 
     /**
