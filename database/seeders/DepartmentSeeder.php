@@ -15,17 +15,7 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-
-        Department::created([
-            [
-                'name'=>'資訊管理系',
-            ],
-            [
-                'name'=>'企業管理系',
-            ],
-            [
-                'name'=>'流通管理系',
-            ]
-        ]);
+        Department::truncate();
+        Department::factory(4)->create();
     }
 }

@@ -22,4 +22,5 @@ class Leave extends Model
         'check_date',
         'remark',
     ];
+    public $timestamps = false;//不用儲存建立時間及修改時間
 }
