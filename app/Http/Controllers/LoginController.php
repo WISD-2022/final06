@@ -38,19 +38,7 @@ class LoginController extends Controller
 
     }*/
 
-    /*public function login(Request $res)
-    {
-        $acc=$res->input('student_id');
-        $pw=$res->input('number');
-        $chk=Student::where('student_id',$acc)->where('number',$pw)->count();
-        if($chk) {
-            //密碼正確導入後台
-            return redirect('/admin');
-        }
-        else {
-            return redirect('/login')->with('error','帳號或密碼錯誤');
-        }
-    }*/
 
+    /*public function login(Request $res){}*/
 }
 

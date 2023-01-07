@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,10 +36,6 @@ Route::middleware([
 Route::get('post', function () {
     return view('post');
 });
-
-//route::get('/redirects',[\App\Http\Controllers\LoginController::class,"index"]);
-
-//Route::post('/login',[LoginController::class,"login"]);
 
 //學生
 Route::prefix('students')->name('students.')->group(function(){

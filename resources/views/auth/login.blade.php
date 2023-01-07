@@ -14,7 +14,7 @@
     <form action="/login" method="post">
         @csrf
         <p class="'text-center my-3">帳號:<input class="border-bottom py-1" type="text" name="acc"></p>
-        <p class="'text-center my-3">密碼:<input class="border-bottom py-1" type="text" name="acc"></p>
+        <p class="'text-center my-3">密碼:<input class="border-bottom py-1" type="text" name="pw"></p>
         <p class="'text-center my-3">
             <input type="submit" value="登入">
         </p>
