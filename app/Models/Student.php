@@ -21,4 +21,13 @@ class Student extends Model
         //一個學生只有一個科系
         return $this->belongsTo(Department::class);
     }
+    public function team(){
+        //一個學生只有一個班級
+        return $this->belongsTo(Team::class);
+    }
+    public function leave(){
+        //一個學生有多張假單
+        return $this->hasMany(Leave::class);
+    }
+    public $timestamps = false;//不用儲存建立時間及修改時間
 }

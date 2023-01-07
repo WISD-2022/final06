@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\Team;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,16 +16,8 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        Department::created([
-            [
-                'name'=>'資訊管理系',
-            ],
-            [
-                'name'=>'企業管理系',
-            ],
-            [
-                'name'=>'流通管理系',
-            ]
-        ]);
+        Department::truncate();
+        Team::truncate();
+        Department::factory(4)->has(Team::factory(2))->create();
     }
 }

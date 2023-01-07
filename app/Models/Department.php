@@ -12,6 +12,7 @@ class Department extends Model
         'id',
         'name',
     ];
+    public $timestamps = false;//不用儲存建立時間及修改時間
     public function team(){
         //一個科系有多個班級
         return $this->hasMany(Team::class);

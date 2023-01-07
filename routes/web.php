@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 /*
@@ -27,6 +28,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
 Route::get('post', function () {
     return view('post');
 });
@@ -34,3 +36,17 @@ Route::get('post', function () {
 //route::get('/redirects',[\App\Http\Controllers\LoginController::class,"index"]);
 
 Route::post('/login',[LoginController::class,"login"]);
+
+//學生
+Route::prefix('students')->name('students.')->group(function(){
+    Route::get('/',[StudentController::class,'index'])->name('index');//學生首頁
+    Route::get('/test',function (){
+        do{
+            $faker = Faker\Factory::create();
+            $year=$faker->year();
+            $a=substr($year,-4,-2);
+        }while($a=='19');
+        return $year.'/'.$a;
+    });
+});
+
