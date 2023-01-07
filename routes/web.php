@@ -35,6 +35,7 @@ Route::get('post', function () {
 
 //route::get('/redirects',[\App\Http\Controllers\LoginController::class,"index"]);
 
+
 Route::post('/login',[LoginController::class,"login"]);
 
 //學生

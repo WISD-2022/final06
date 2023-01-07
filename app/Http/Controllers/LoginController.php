@@ -44,10 +44,11 @@ class LoginController extends Controller
         $pw=$res->input('number');
         $chk=Student::where('student_id',$acc)->where('number',$pw)->count();
         if($chk) {
-            //密碼正確導入後台
-            return redirect('/admin');
+            //帳號密碼正確導入學生介面
+            return redirect('/students');
         }
         else {
+            //帳號密碼錯誤顯示錯誤訊息
             return redirect('/login')->with('error','帳號或密碼錯誤');
         }
     }
