@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {   //登入
-    return view('index');
+    return view('welcome');
 });
 
 Route::middleware([
@@ -35,6 +35,8 @@ Route::prefix('students')->name('students.')->group(function(){
     Route::get('/create',[StudentController::class,'create'])->name('create');//新增假單
     Route::post('/',[StudentController::class,'store'])->name('store');//儲存假單
     Route::get('/{leave}',[StudentController::class,'show'])->name('show');//假單詳細資料
+    Route::delete('/{leave}',[StudentController::class,'destroy'])->name('destroy');//刪除假單
+
     Route::get('/test',function (){
         do{
             $faker = Faker\Factory::create();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Leave;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -61,7 +62,7 @@ class StudentController extends Controller
             'end_time'=>$request->end_time,
             'remark'=>$request->remark,
         ]);
-        return redirect()->route('students.index');
+        return redirect()->route('students.list');
     }
 
     public function show(Leave $leave)
@@ -95,14 +96,14 @@ class StudentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
+    public function destroy(Leave $leave)
     {
-        //
+        //取得硬碟實例
+        $disk=Storage::disk('images');
+        //刪除指定檔案
+        $disk->delete($leave->picture);
+        Leave::destroy($leave->id);
+        return redirect()->route('students.list');
+
     }
 }

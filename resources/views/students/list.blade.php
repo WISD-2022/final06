@@ -46,7 +46,7 @@
                     <td style="width: 150px">
                         <a href="{{route('students.show',$leave->id)}}" class="btn btn-primary btn-sm">詳細</a>
                         @if($leave->check == 0)
-                        <form action="#" method="post" style="display: inline-block">
+                        <form action="{{route('students.destroy',$leave->id)}}" method="post" style="display: inline-block">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm">取消</button>
