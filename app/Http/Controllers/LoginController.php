@@ -38,7 +38,7 @@ class LoginController extends Controller
 
     }*/
 
-    public function login(Request $res)
+ /*   public function login(Request $res)
     {
         $acc=$res->input('student_id');
         $pw=$res->input('number');
@@ -52,6 +52,6 @@ class LoginController extends Controller
             return redirect('/login')->with('error','帳號或密碼錯誤');
         }
     }
-
+*/
 }
 
