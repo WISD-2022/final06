@@ -15,33 +15,46 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">活動名稱</th>
-                    <th scope="col">推薦</th>
+                    <th scope="col">假別</th>
+                    <th scope="col">開始時間</th>
+                    <th scope="col">結束時間</th>
+                    <th scope="col">狀態</th>
                     <th scope="col">功能</th>
                 </tr>
                 </thead>
 
                 <tbody>
-{{--                @foreach($activities_show as $activity)<!--activities陣列內有幾筆資料就會重複執行幾次-->--}}
-{{--                <tr>--}}
-{{--                    <th scope="row" style="width: 50px">{{ $activity->id }}</th><!--印出資料表內的id欄位-->--}}
-{{--                    <td>{{ $activity->name }}</td>--}}
-{{--                    @if($activity->is_feature == 1)--}}
-{{--                        <td>是</td>--}}
-{{--                    @else--}}
-{{--                        <td>否</td>--}}
-{{--                    @endif--}}
-{{--                    <td style="width: 150px">--}}
-{{--                        <a href="{{route('admin.activities.show',$activity->id)}}" class="btn btn-primary btn-sm">詳細資料</a>--}}
-
-{{--                        <form action="{{route('admin.activities.destroy',$activity->id)}}" method="post" style="display: inline-block">--}}
-{{--                            @method('delete')--}}
-{{--                            @csrf--}}
-{{--                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>--}}
-{{--                        </form>--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-{{--                @endforeach--}}
+                @foreach($leaves as $leave)<!--activities陣列內有幾筆資料就會重複執行幾次-->
+                <tr>
+                    <th scope="row" style="width: 50px">{{ $leave->id }}</th><!--印出資料表內的id欄位-->
+                    @if($leave->leave == 1)
+                        <td>事假</td>
+                    @elseif($leave->leave == 2)
+                        <td>病假</td>
+                    @else
+                        <td>公假</td>
+                    @endif
+                    <td>{{ $leave->start_time }}</td>
+                    <td>{{ $leave->end_time }}</td>
+                    @if($leave->check == 0)
+                        <td>審核中</td>
+                    @elseif($leave->leave == 1)
+                        <td>同意</td>
+                    @else
+                        <td>不同意</td>
+                    @endif
+                    <td style="width: 150px">
+                        <a href="{{route('students.show',$leave->id)}}" class="btn btn-primary btn-sm">詳細</a>
+                        @if($leave->check == 0)
+                        <form action="#" method="post" style="display: inline-block">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">取消</button>
+                        </form>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

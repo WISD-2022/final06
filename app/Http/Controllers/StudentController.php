@@ -15,7 +15,13 @@ class StudentController extends Controller
     }
     public function list()
     {
-        return view('students.list');
+        //取得當前使用者的假單(未完成)
+        //取得學生id為1的假單
+        $leaves=Leave::where('student_id','=',1)->get();
+        $data=[
+          'leaves'=>$leaves
+        ];
+        return view('students.list',$data);
     }
     public function create()
     {
@@ -58,15 +64,12 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Student $student)
+    public function show(Leave $leave)
     {
-        //
+        $data=[
+          'leave'=>$leave
+        ];
+        return view('students.show',$data);
     }
 
     /**

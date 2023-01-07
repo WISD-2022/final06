@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   //登入
     return view('index');
 });
 
@@ -33,7 +33,8 @@ Route::prefix('students')->name('students.')->group(function(){
     Route::get('/',[StudentController::class,'index'])->name('index');//學生首頁
     Route::get('/list',[StudentController::class,'list'])->name('list');//假單列表
     Route::get('/create',[StudentController::class,'create'])->name('create');//新增假單
-    Route::post('/',[StudentController::class,'store'])->name('store');//新增假單
+    Route::post('/',[StudentController::class,'store'])->name('store');//儲存假單
+    Route::get('/{leave}',[StudentController::class,'show'])->name('show');//假單詳細資料
     Route::get('/test',function (){
         do{
             $faker = Faker\Factory::create();
