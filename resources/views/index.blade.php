@@ -4,11 +4,8 @@
 
 @section('page-content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">登入</h1><ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">登入</li>
+    <h1 class="mt-4">登入</h1>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div>

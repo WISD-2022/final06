@@ -27,8 +27,19 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
+        $user=Auth::User();
+        $type=$user->type;
+        if($type=='0'){//登入身份為管理員
+            echo '0';
+        }
+        elseif($type=='1'){//登入身份為學生
+            return redirect('students');
+        }
+        elseif($type=='2'){//登入身份為導師
+            echo '2';
+        }
         //return view('dashboard');
-        return redirect('students');
+        //return redirect('students');
     })->name('dashboard');
 });
 
