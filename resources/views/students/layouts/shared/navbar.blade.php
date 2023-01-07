@@ -21,7 +21,17 @@
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+{{--                <li><a class="dropdown-item" href="#!">Logout</a></li>--}}
+                <!-- Authentication -->
+                <form method="get" action="{{ route('logout') }}" x-data>
+                    @method('get')
+                    @csrf
+
+                    <x-jet-dropdown-link href="{{ route('logout') }}"
+                                         @click.prevent="$root.submit();">
+                        {{ __('Log Out') }}
+                    </x-jet-dropdown-link>
+                </form>
             </ul>
         </li>
     </ul>

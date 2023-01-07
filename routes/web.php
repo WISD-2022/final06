@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {   //登入
+    return view('index');
+});
+Route::get('/welcome', function () {   //登入
     return view('welcome');
 });
 
@@ -24,7 +27,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        //return view('dashboard');
+        return redirect('students');
     })->name('dashboard');
 });
 
