@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(UserSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=0;'); //關閉外鍵檢查
         $this->call(DepartmentSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;'); //開啟外鍵檢查
