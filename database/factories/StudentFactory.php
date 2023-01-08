@@ -16,8 +16,10 @@ class StudentFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            //
+            'department_id',
+            'team_id',
         ];
     }
 }

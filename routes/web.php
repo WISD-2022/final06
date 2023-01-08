@@ -58,13 +58,8 @@ Route::prefix('students')->name('students.')->group(function(){
     Route::get('/{leave}',[StudentController::class,'show'])->name('show');//假單詳細資料
     Route::delete('/{leave}',[StudentController::class,'destroy'])->name('destroy');//刪除假單
 
-    Route::get('/test',function (){
-        do{
-            $faker = Faker\Factory::create();
-            $year=$faker->year();
-            $a=substr($year,-4,-2);
-        }while($a=='19');
-        return $year.'/'.$a;
-    });
+    
 });
+Route::get('/test',function (){
 
+});
