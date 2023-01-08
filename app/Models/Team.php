@@ -22,5 +22,8 @@ class Team extends Model
         //一個班級會有多個學生
         return $this->hasMany(Student::class);
     }
+    public function teacher(){
+        return $this->hasMany(Teacher::class);
+    }
     public $timestamps = false;//不用儲存建立時間及修改時間
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -40,5 +41,6 @@ class UserSeeder extends Seeder
 //                'password'=>'$2y$10$EfHSnowZ1S0gsGJjVV4v9.yXBKH9SSfGGvFgghVi2DtUasju/UQHK',//00000000
 //            ]);
         User::factory(1)->has(Student::factory(1))->create();
+        User::factory(1)->has(Teacher::factory(1))->create();
     }
 }

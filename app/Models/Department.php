@@ -21,4 +21,7 @@ class Department extends Model
         //一個科系有多個學生
         return $this->hasMany(Student::class);
     }
+    public function teacher(){
+        return $this->hasMany(Teacher::class);
+    }
 }
