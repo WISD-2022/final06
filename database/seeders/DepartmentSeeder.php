@@ -18,6 +18,6 @@ class DepartmentSeeder extends Seeder
     {
         Department::truncate();
         Team::truncate();
-        Department::factory(4)->has(Team::factory(2))->create();
+        Department::factory(4)->has(Team::factory(3))->create();
     }
 }

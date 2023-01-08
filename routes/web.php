@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Models\Department;
+use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -58,8 +60,17 @@ Route::prefix('students')->name('students.')->group(function(){
     Route::get('/{leave}',[StudentController::class,'show'])->name('show');//假單詳細資料
     Route::delete('/{leave}',[StudentController::class,'destroy'])->name('destroy');//刪除假單
 
-    
+
 });
 Route::get('/test',function (){
-
+    $department=Department::find(1);
+    $teams=$department->team()->get();
+    echo $teams[0]->id;
+//    foreach ($teams as $team){
+//        echo 1;
+//        echo $team;
+//    }
+    //return $teams;
+    //print_r($teams);
+    echo 'OKK';
 });

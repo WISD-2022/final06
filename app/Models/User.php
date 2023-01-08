@@ -17,7 +17,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    public function student(){
+        return $this->hasOne(Student::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
