@@ -13,7 +13,6 @@ class Student extends Model
         'user_id',
         'department_id',
         'team_id',
-        'name',
         'student_id',
         'sex',
         'number',

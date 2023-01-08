@@ -22,7 +22,6 @@ class StudentFactory extends Factory
         return [
             'department_id'=>$department->id,
             'team_id'=>$teams[rand(0,2)]->id,
-            'name'=>$this->faker->name(),
             'student_id'=>$this->faker->numberBetween(1111111,9999999),
             'sex'=>rand(1,2),
             'number'=>$this->faker->personalIdentityNumber(),
