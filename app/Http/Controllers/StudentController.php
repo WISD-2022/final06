@@ -20,7 +20,7 @@ class StudentController extends Controller
         //取得當前使用者的假單
         $user=Auth::user();
         //取得學生id為1的假單
-        $leaves=Leave::where('student_id','=',$user->id)->get();
+        $leaves=Leave::where('user_id','=',$user->id)->get();
         $data=[
           'leaves'=>$leaves
         ];
@@ -55,7 +55,7 @@ class StudentController extends Controller
         $application_date=date('y/n/j');
         //儲存資料
         Leave::create([
-            'student_id'=>$user->id,//待修改
+            'user_id'=>$user->id,//待修改
             'application_date'=>$application_date,
             'leave'=>$request->leave,
             'reason'=>$request->reason,

@@ -49,16 +49,16 @@ class TeacherController extends Controller
                 foreach ($teams as $team)
                 {
                     $students=$team->student()->get();//取得與team相關的student資料列
+                    echo $students;
                     foreach ($students as $student)
                         {
                         $leaves=$student->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
-
                         foreach ($leaves as $leave)
                         {
 
                             $array = Arr::add($array, $count, $leave);
                             $count++;
-                            //print_r($leave);
+                            print_r($leave);
                             echo $leave;
                         }
                     }

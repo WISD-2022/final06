@@ -44,7 +44,7 @@ Route::middleware([
         elseif($type=='2'){//登入身份為導師
             return redirect('teachers');
         }
-        //return view('dashboard');
+        return view('dashboard');
         //return redirect('students');
     })->name('dashboard');
 });

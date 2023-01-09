@@ -10,7 +10,7 @@ class Leave extends Model
     use HasFactory;
     protected $fillable=[
         'id',
-        'student_id',
+        'user_id',
         'application_date',
         'leave',
         'reason',

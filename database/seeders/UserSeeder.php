@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             [//教師
                 'type'=>2,
                 'name'=>'teacher',
-                'email'=>'teachers@gmail.com',
+                'email'=>'teacher@gmail.com',
                 'password'=>'$2y$10$EfHSnowZ1S0gsGJjVV4v9.yXBKH9SSfGGvFgghVi2DtUasju/UQHK',//00000000
             ])->has(Teacher::factory(1))->create();
 
