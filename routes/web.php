@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AccountStudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::middleware([
         $user=Auth::User();
         $type=$user->type;
         if($type=='0'){//登入身份為管理員
-            echo '0';
+            return redirect('admins');
         }
         elseif($type=='1'){//登入身份為學生
             return redirect('students');
@@ -67,3 +68,9 @@ Route::prefix('students')->name('students.')->group(function(){
     });
 });
 
+//管理員
+Route::prefix('admins')->name('admins.')->group(function(){
+    Route::get('/',[AccountStudentController::class,'index'])->name('index');//管理員首頁
+
+
+});
