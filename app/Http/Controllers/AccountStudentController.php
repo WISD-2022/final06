@@ -13,9 +13,9 @@ class AccountStudentController extends Controller
     {
         $array=array();
         $count=0;
-        $students=Student::all();
+        $students=Student::all();//三維陣列
         foreach ($students as $student) {
-            $teams = $student->team()->get();
+            $teams = $student->team()->get();//三維
             $users = $student->user()->get();
             foreach ($teams as $team) {
                 $departments=$team->department()->get();

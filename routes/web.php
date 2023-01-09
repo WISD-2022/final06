@@ -69,6 +69,11 @@ Route::prefix('admins')->name('admins.')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
     Route::prefix('students')->name('students.')->group(function(){
         Route::get('/',[AccountStudentController::class,'index'])->name('index');//學生帳號列表
+        //新增學生帳號
+        //儲存學生帳號
+        //編輯學生帳號
+        //更新學生帳號
+        //刪除學生帳號
     });
 
 });
