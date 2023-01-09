@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AccountStudentController;
 use App\Models\Department;
 use App\Models\Team;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,7 @@ Route::middleware([
             return redirect('students');
         }
         elseif($type=='2'){//登入身份為導師
-            echo '2';
+            return redirect('teachers');
         }
         //return view('dashboard');
         //return redirect('students');
@@ -77,6 +78,15 @@ Route::prefix('admins')->name('admins.')->group(function(){
     });
 
 });
+
+//教師
+Route::prefix('teachers')->name('teachers.')->group(function(){
+    Route::get('/',[TeacherController::class,'index'])->name('index');//管理員首頁
+    Route::get('/list',[TeacherController::class,'list'])->name('list');//所有假單
+    Route::get('/uncheck',[TeacherController::class,'uncheck'])->name('uncheck');//未審核假單
+});
+
+
 
 Route::get('/test',function (){
     $department=Department::find(1);
