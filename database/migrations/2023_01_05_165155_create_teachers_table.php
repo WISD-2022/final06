@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');    //帳號編號
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('department_id');    //科系編號
             $table->foreign('department_id')->references('id')->on('departments');
             $table->unsignedBigInteger('team_id');  //班級編號

@@ -9,6 +9,7 @@
         <li class="breadcrumb-item active">請假平台</li>
     </ol>
     <!-- Main Content -->
+    <div class="pt-4">
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">假別</label>
             @if($leave->leave == 1)
@@ -40,8 +41,8 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">證明文件</label>
-            <img src="{{asset('images/'.$leave->picture)}}">
+            <img src="{{asset('images/'.$leave->picture)}}" class="form-control">
         </div>
-
+    </div>
 </div>
 @endsection

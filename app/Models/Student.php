@@ -10,13 +10,16 @@ class Student extends Model
     use HasFactory;
     protected $fillable=[
         'id',
+        'user_id',
         'department_id',
         'team_id',
-        'name',
         'student_id',
         'sex',
         'number',
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function department(){
         //一個學生只有一個科系
         return $this->belongsTo(Department::class);

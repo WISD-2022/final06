@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();   //編號
-            $table->unsignedBigInteger('student_id');    //科系編號
+            $table->unsignedBigInteger('student_id');    //學生編號
             $table->foreign('student_id')->references('id')->on('students');
             $table->date('application_date');    //申請日期
             $table->integer('leave');  //假別 1=事假 2=病假 3=公假

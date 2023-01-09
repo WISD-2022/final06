@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Leave;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
@@ -16,9 +17,10 @@ class StudentController extends Controller
     }
     public function list()
     {
-        //取得當前使用者的假單(未完成)
+        //取得當前使用者的假單
+        $user=Auth::user();
         //取得學生id為1的假單
-        $leaves=Leave::where('student_id','=',1)->get();
+        $leaves=Leave::where('student_id','=',$user->id)->get();
         $data=[
           'leaves'=>$leaves
         ];
@@ -48,12 +50,12 @@ class StudentController extends Controller
             $request->file('picture')->move(public_path('/images'),$imageName);
         }
         //登入者身分(未完成)
-
+        $user=Auth::user();
         //取得現在時間
         $application_date=date('y/n/j');
         //儲存資料
         Leave::create([
-            'student_id'=>'1',//待修改
+            'student_id'=>$user->id,//待修改
             'application_date'=>$application_date,
             'leave'=>$request->leave,
             'reason'=>$request->reason,
