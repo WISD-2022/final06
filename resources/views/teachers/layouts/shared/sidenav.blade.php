@@ -6,18 +6,18 @@
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    主控台
+                    首頁
                 </a>
                 <a class="nav-link" href="{{route('teachers.list')}}">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    查看假單
-                </a><a class="nav-link" href="{{route('teachers.create')}}">
+                    所有假單
+                </a><a class="nav-link" href="{{route('teachers.uncheck')}}">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    新增假單
+                    未審核假單
                 </a>
             </div>
         </div>
