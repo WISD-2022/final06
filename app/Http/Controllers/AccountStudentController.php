@@ -10,6 +10,6 @@ class AccountStudentController extends Controller
 {
     public function index()
     {
-        return view('admins.index');
+        return view('admins.students.index');
     }
 }

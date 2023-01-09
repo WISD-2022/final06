@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AccountStudentController;
 use App\Models\Department;
@@ -65,7 +66,10 @@ Route::prefix('students')->name('students.')->group(function(){
 
 //管理員
 Route::prefix('admins')->name('admins.')->group(function(){
-    Route::get('/',[AccountStudentController::class,'index'])->name('index');//管理員首頁
+    Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
+    Route::prefix('students')->name('students.')->group(function(){
+        Route::get('/',[AccountStudentController::class,'index'])->name('index');//學生帳號列表
+    });
 
 });
 
