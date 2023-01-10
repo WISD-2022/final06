@@ -28,7 +28,7 @@
                 <div class="col-6">
                     <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">科系</label>
-                    <select name="department" id="department" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select name="department" id="department" class="form-select form-select" aria-label=".form-select example">
                         @foreach($departments as $department)
                         <option value="{{$department->id}}">{{$department->name}}</option>
                         @endforeach
@@ -38,7 +38,7 @@
                 <div class="col-6">
                     <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">班級</label>
-                    <select name="team" id="team" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select name="team" id="team" class="form-select form-select" aria-label=".form-select example">
                         @foreach($teams as $team)
                             <option value="{{$team->id}}">{{$team->class}}</option>
                         @endforeach
@@ -49,7 +49,7 @@
                 <div class="col-6">
                     <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">性別</label>
-                    <select name="sex" id="sex" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select name="sex" id="sex" class="form-select form-select" aria-label=".form-select example">
                         <option value="1">男</option>
                         <option value="2">女</option>
                     </select>

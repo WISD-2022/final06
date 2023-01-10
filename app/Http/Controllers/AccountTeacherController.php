@@ -8,6 +8,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 class AccountTeacherController extends Controller
 {
@@ -44,25 +45,45 @@ class AccountTeacherController extends Controller
         return view('admins.teachers.index',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //取得科系名稱
+        $departments=Department::all();
+        //取得班級名稱
+        $teams=Team::all();
+        $data=[
+            'departments'=>$departments,
+            'teams'=>$teams,
+        ];
+        return view('admins.teachers.create',$data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //資料驗證
+        $this->validate($request,[
+            'name'=>'required',
+            'department'=>'required',
+            'team'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+        //將密碼加密(使用哈希加密方式)
+        $password=Hash::make($request->password);
+        //儲存資料至users
+        $user=User::create([
+            'type'=>'1',
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$password,
+        ]);
+//        //儲存資料至teachers
+        Teacher::create([
+            'user_id'=>$user->id,
+            'department_id'=>$request->department,
+            'team_id'=>$request->team,
+        ]);
+        return redirect()->route('admins.teachers.index');
     }
 
     public function show(Teacher $teacher)

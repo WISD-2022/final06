@@ -59,16 +59,16 @@ class AccountStudentController extends Controller
 
     public function store(Request $request){
         //資料驗證
-//        $this->validate($request,[
-//            'name'=>'required',
-//            'student_id'=>'required',
-//            'department'=>'required',
-//            'team'=>'required',
-//            'sex'=>'required',
-//            'number'=>'required',
-//            'email'=>'required',
-//            'password'=>'required',
-//        ]);
+        $this->validate($request,[
+            'name'=>'required',
+            'student_id'=>'required',
+            'department'=>'required',
+            'team'=>'required',
+            'sex'=>'required',
+            'number'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+        ]);
         echo $request->team;
             echo $request->sex;
         //將密碼加密(使用哈希加密方式)
