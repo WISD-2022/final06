@@ -43,6 +43,57 @@
             <label for="exampleFormControlTextarea1" class="form-label">證明文件</label>
             <img src="{{asset('images/'.$leave->picture)}}" class="form-control">
         </div>
+        <div>
+            <!-- 互動式視窗按鈕 -->
+            @if('check' == 0)
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    審核
+                </button>
+            @else
+                {{--                            --}}
+            @endif
+        </div>
+    </div>
+</div>
+
+<!-- 互動視窗 -->
+<!-- 互動視窗內容 -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">審核</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="{{route('teachers.update',$leave->id)}}" method="post" enctype="multipart/form-data" style="display: inline-block">
+                @method('patch')
+                @csrf
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="check" id="check" value="1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            同意
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="check" id="check" value="2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            不同意
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">審核意見</label>
+                        <textarea class="form-control" id="opinion" name="opinion" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >
+                        送出
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
