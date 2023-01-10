@@ -19,12 +19,18 @@ class AccountAdminController extends Controller
 
     public function create()
     {
-        //
+        return view('admins.admins.create');
     }
 
     public function store(Request $request)
     {
-        //
+        User::create([
+            'type'=>'0',
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$request->password,
+        ]);
+        return redirect()->route('admins.list');
     }
 
     public function show(User $user)
