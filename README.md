@@ -32,8 +32,11 @@
 ### 帳號詳細資料
 ![image](https://user-images.githubusercontent.com/113490250/211594575-b7fa4b64-5636-425f-b281-8e4ebd7996b9.png)
 ### 班級、科系管理
-
-
+![image](https://user-images.githubusercontent.com/113490250/211630051-7ddfcc03-64f3-4198-a483-e8a67920535f.png)
+### 新增班級、科系
+![image](https://user-images.githubusercontent.com/113490250/211630277-8c8c7b93-0864-4312-b842-a153c5b7b5c0.png)
+### 班級、科系詳細資料
+![image](https://user-images.githubusercontent.com/113490250/211630342-be5833c4-f45d-4f61-b216-f2d62fdfa035.png)
 
 ## 系統名稱及作用 
 ### 請假平台
@@ -58,11 +61,55 @@
 ### 管理員
 - 首頁Route::get('/',[AdminController::class,'index'])->name('index'); [3A932113 楊淑媚](https://github.com/3A932113)
 - 學生帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+<pre>
+學生帳號列表Route::get('/',[AccountStudentController::class,'index'])->name('index');
+新增學生帳號Route::get('/create',[AccountStudentController::class,'create'])->name('create');
+儲存學生帳號Route::post('/',[AccountStudentController::class,'store'])->name('store');
+學生帳號詳細資料Route::get('/{student}',[AccountStudentController::class,'show'])->name('show');
+編輯學生帳號Route::get('/{student}/edit',[AccountStudentController::class,'edit'])->name('edit');
+更新學生帳號Route::patch('/{student}',[AccountStudentController::class,'update'])->name('update');
+刪除學生帳號Route::delete('/{student}',[AccountStudentController::class,'destroy'])->name('destroy');
+</pre>      
 - 教師帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+<pre>
+教師帳號列表Route::get('/',[AccountTeacherController::class,'index'])->name('index');
+新增教師帳號Route::get('/create',[AccountTeacherController::class,'create'])->name('create');
+儲存教師帳號Route::post('/',[AccountTeacherController::class,'store'])->name('store');
+教師帳號詳細資料Route::get('/{teacher}',[AccountTeacherController::class,'show'])->name('show');
+編輯教師帳號Route::get('/{teacher}/edit',[AccountTeacherController::class,'edit'])->name('edit');
+更新教師帳號Route::patch('/{teacher}',[AccountTeacherController::class,'update'])->name('update');
+刪除教師帳號Route::delete('/{teacher}',[AccountTeacherController::class,'destroy'])->name('destroy');
+</pre>
 - 管理員帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+<pre>
+管理員帳號列表Route::get('/list',[AccountAdminController::class,'index'])->name('list');
+新增管理員帳號Route::get('/create',[AccountAdminController::class,'create'])->name('create');
+儲存管理員帳號Route::post('/',[AccountAdminController::class,'store'])->name('store');
+管理員帳號詳細資料Route::get('/{user}',[AccountAdminController::class,'show'])->name('show');
+編輯管理員帳號Route::get('/{user}/edit',[AccountAdminController::class,'edit'])->name('edit');
+更新管理員帳號Route::patch('/{user}',[AccountAdminController::class,'update'])->name('update');
+刪除管理員帳號Route::delete('/{user}',[AccountAdminController::class,'destroy'])->name('destroy');
+</pre>
 - 科系管理 [3A932113 楊淑媚](https://github.com/3A932113)
+<pre>
+科系列表Route::get('/',[DepartmentController::class,'index'])->name('index');
+新增科系Route::get('/create',[DepartmentController::class,'create'])->name('create');
+儲存科系Route::post('/',[DepartmentController::class,'store'])->name('store');
+科系詳細資料Route::get('/{department}',[DepartmentController::class,'show'])->name('show');
+刪除科系Route::delete('/{department}',[DepartmentController::class,'destroy'])->name('destroy');
+編輯科系Route::get('/{department}/edit',[DepartmentController::class,'edit'])->name('edit');
+更新科系Route::patch('/{department}',[DepartmentController::class,'update'])->name('update');
+</pre>
 - 班級管理 [3A932113 楊淑媚](https://github.com/3A932113)
-
+<pre>
+班級列表Route::get('/',[TeamController::class,'index'])->name('index');
+新增班級Route::get('/create',[TeamController::class,'create'])->name('create');
+儲存班級Route::post('/',[TeamController::class,'store'])->name('store');
+班級詳細資料Route::get('/{team}',[TeamController::class,'show'])->name('show');
+刪除班級Route::delete('/{team}',[TeamController::class,'destroy'])->name('destroy');
+編輯班級Route::get('/{team}/edit',[TeamController::class,'edit'])->name('edit');
+更新班級Route::patch('/{team}',[TeamController::class,'update'])->name('update');
+</pre>
 ## ERD
 
 ## 關聯式綱要圖
