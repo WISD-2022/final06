@@ -8,6 +8,9 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">請假平台</li>
     </ol>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-success btn-sm" href="{{route('admins.students.edit',$array['id'])}}">編輯</a>
+    </div>
     <!-- Main Content -->
     <div class="pt-4">
         <div class=" row mb-3">

@@ -74,15 +74,15 @@ class AccountStudentController extends Controller
         //將密碼加密(使用哈希加密方式)
         $password=Hash::make($request->password);
         //儲存資料至users
-        $uaer=User::create([
+        $user=User::create([
             'type'=>'1',
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$password,//尋找加密方式
+            'password'=>$password,
         ]);
 //        //儲存資料至students
         Student::create([
-           'user_id'=>$uaer->id,
+           'user_id'=>$user->id,
             'department_id'=>$request->department,
             'team_id'=>$request->team,
             'student_id'=>$request->student_id,
@@ -101,6 +101,7 @@ class AccountStudentController extends Controller
                 $users=$student->user()->get();
                 foreach ($users as $user){
                     $array=[
+                        'id'=>$student->id,
                         'name'=>$user->name,
                         'student_id'=>$student->student_id,
                         'department'=>$department->name,
@@ -120,14 +121,66 @@ class AccountStudentController extends Controller
         return view('admins.students.show',$data);
     }
 
-    public function edit(){
-        //
+    public function edit(Student $student){
+        //取得科系名稱
+        $departments_all=Department::all();
+        //取得班級名稱
+        $teams_all=Team::all();
+        //取得欄位資料
+        $array=[];
+        $teams=$student->team()->get();
+        foreach ($teams as $team){
+            $departments=$student->department()->get();
+            foreach ($departments as $department){
+                $users=$student->user()->get();
+                foreach ($users as $user){
+                    $array=[
+                        'id'=>$student->id,
+                        'name'=>$user->name,
+                        'student_id'=>$student->student_id,
+                        'department'=>$department->name,
+                        'team'=>$team->class,
+                        'sex'=>$student->sex,
+                        'number'=>$student->number,
+                        'email'=>$user->email,
+                        'password'=>$user->password,
+                    ];
+                }
+
+            }
+        }
+        $data=[
+            'array'=>$array,
+            'departments'=>$departments_all,
+            'teams'=>$teams_all,
+        ];
+        return view('admins.students.edit',$data);
     }
 
-    public function update(){
-        //
+    public function update(Request $request,Student $student){
+        //查詢相關user資料
+        $user=User::find($student->user_id);
+        echo $student;
+        //更新資料至users
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+        ]);
+        //儲存資料至students
+        $student->update([
+            'department_id'=>$request->department,
+            'team_id'=>$request->team,
+            'student_id'=>$request->student_id,
+            'sex'=>$request->sex,
+            'number'=>$request->number,
+        ]);
+        return redirect()->route('admins.students.index');
     }
-    public function destroy(){
-        //
+    public function destroy(Student $student){
+        $user=User::find($student->user_id);
+        echo $user;
+        Student::destroy($student->id);
+        User::destroy($user->id);
+        return redirect()->route('admins.students.index');
     }
 }

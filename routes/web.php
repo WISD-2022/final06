@@ -74,7 +74,7 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::post('/',[AccountStudentController::class,'store'])->name('store');//儲存學生帳號
         Route::get('/{student}',[AccountStudentController::class,'show'])->name('show');//學生帳號詳細資料
         Route::get('/{student}/edit',[AccountStudentController::class,'edit'])->name('edit');//編輯學生帳號
-        Route::patch('/update',[AccountStudentController::class,'update'])->name('update');//更新學生帳號
+        Route::patch('/{student}',[AccountStudentController::class,'update'])->name('update');//更新學生帳號
         Route::delete('/{student}',[AccountStudentController::class,'destroy'])->name('destroy');//刪除學生帳號
     });
 
