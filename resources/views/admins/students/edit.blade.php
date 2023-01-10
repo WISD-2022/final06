@@ -47,8 +47,8 @@
                 <div class="col-6">
                     <label for="exampleFormControlInput1" class="form-label">性別</label>
                     <select name="sex" id="sex" class="form-select form-select" aria-label=".form-select example">
-                        <option value="1" {{($team->name==$array['sex'])?'selected':""}}>男</option>
-                        <option value="2" {{($team->name==$array['sex'])?'selected':""}}>女</option>
+                        <option value="1" {{($array['sex']=='1')?'selected':""}}>男</option>
+                        <option value="2" {{($array['sex']=='2')?'selected':""}}>女</option>
                     </select>
                 </div>
 

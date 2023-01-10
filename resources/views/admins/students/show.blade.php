@@ -37,7 +37,7 @@
         <div class="row mb-3">
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">性別</label>
-                <input name="sex" id="sex" type="text" class="form-control-plaintext" readonly  value="{{$array['sex']}}">
+                <input name="sex" id="sex" type="text" class="form-control-plaintext" readonly  value="{{($array['sex']=='1')?'男':'女'}}">
             </div>
 
             <div class="col-6">
