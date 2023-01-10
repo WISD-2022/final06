@@ -48,9 +48,11 @@ class TeacherController extends Controller
                     $teams=$teacher->team()->get();//取得與teacher相關的team資料列
                 foreach ($teams as $team)
                 {
+
                     $students=$team->student()->get();//取得與team相關的student資料列
                     foreach ($students as $student)
                         {
+                            //透過student取得user的資料
                         $leaves=$student->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
 
                         foreach ($leaves as $leave)
@@ -58,8 +60,8 @@ class TeacherController extends Controller
 
                             $array = Arr::add($array, $count, $leave);
                             $count++;
-                            //print_r($leave);
-                            echo $leave;
+                            //echo $array;
+//                            echo $leave;
                         }
                     }
                 }
@@ -68,10 +70,10 @@ class TeacherController extends Controller
 //        }
 
      //取得學生id為1的假單
-//     $data=[
-//            'leaves'=>$leaves
-//      ];
-//      return view('teachers.uncheck',$data);
+     $data=[
+            'array'=>$array
+      ];
+      return view('teachers.uncheck',$data);
     }
 
     /**

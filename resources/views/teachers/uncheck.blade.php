@@ -24,34 +24,29 @@
                 </thead>
 
                 <tbody>
-                @foreach($leaves as $leave)<!--activities陣列內有幾筆資料就會重複執行幾次-->
+                @foreach($array as $array_item)<!--activities陣列內有幾筆資料就會重複執行幾次-->
                 <tr>
-                    <th scope="row" style="width: 50px">{{ $leave->id }}</th><!--印出資料表內的id欄位-->
-                    @if($leave->leave == 1)
+                    <th scope="row" style="width: 50px">{{ $array_item['id'] }}</th><!--印出資料表內的id欄位-->
+                    @if($array_item['leave'] == 1)
                         <td>事假</td>
-                    @elseif($leave->leave == 2)
+                    @elseif($array_item['leave'] == 2)
                         <td>病假</td>
                     @else
                         <td>公假</td>
                     @endif
-                    <td>{{ $leave->start_time }}</td>
-                    <td>{{ $leave->end_time }}</td>
-                    @if($leave->check == 0)
+                    <td>{{ $array_item['start_time'] }}</td>
+                    <td>{{ $array_item['end_time'] }}</td>
+                    @if($array_item['check'] == 0)
                         <td>審核中</td>
-                    @elseif($leave->leave == 1)
+                    @elseif($array_item['check'] == 1)
                         <td>同意</td>
                     @else
                         <td>不同意</td>
                     @endif
                     <td style="width: 150px">
-                        <a href="{{route('teachers.show',$leave->id)}}" class="btn btn-primary btn-sm">詳細</a>
-                        @if($leave->check == 0)
-                        <form action="{{route('teachers.destroy',$leave->id)}}" method="post" style="display: inline-block">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">取消</button>
-                        </form>
-                        @endif
+                        <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
+                        <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-primary btn-sm">通過</a>
+                        <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-danger btn-sm">不通過</a>
                     </td>
                 </tr>
                 @endforeach

@@ -75,6 +75,7 @@ Route::prefix('teachers')->name('teachers.')->group(function(){
     Route::get('/',[TeacherController::class,'index'])->name('index');//管理員首頁
     Route::get('/list',[TeacherController::class,'list'])->name('list');//所有假單
     Route::get('/uncheck',[TeacherController::class,'uncheck'])->name('uncheck');//未審核假單
+    Route::get('/{leave}',[TeacherController::class,'show'])->name('show');//假單詳細資料
 });
 
 
