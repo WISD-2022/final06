@@ -27,9 +27,13 @@ class AccountAdminController extends Controller
         //
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $data=[
+            'user'=>$user
+        ];
+        echo $user->id;
+        return view('admins.admins.show',$data);
     }
 
     public function edit($id)
