@@ -9,7 +9,7 @@
         <li class="breadcrumb-item active">管理平台</li>
     </ol>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-success btn-sm" href="{{route('admins.students.create')}}">新增</a>
+        <a class="btn btn-success btn-sm" href="{{route('admins.departments.create')}}">新增</a>
     </div>
     <!-- Main Content -->
     <div class="tab-pane fade show active" id="nav-show" role="tabpanel" aria-labelledby="nav-show-tab">
@@ -20,7 +20,6 @@
                     <th scope="col">#</th>
                     <th scope="col">科系</th>
                     <th scope="col">班級</th>
-                    <th scope="col">姓名</th>
                     <th scope="col">功能</th>
                 </tr>
                 </thead>
@@ -31,10 +30,9 @@
                     <th scope="row" style="width: 50px">{{ $array_item['id'] }}</th><!--印出資料表內的id欄位-->
                     <td>{{ $array_item['department'] }}</td>
                     <td>{{ $array_item['team'] }}</td>
-                    <td>{{ $array_item['student'] }}</td>
                     <td style="width: 150px">
-                        <a href="{{route('admins.students.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
-                        <form action="{{route('admins.students.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
+                        <a href="{{route('admins.departments.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
+                        <form action="{{route('admins.departments.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm">刪除</button>

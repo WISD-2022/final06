@@ -20,7 +20,6 @@
                     <th scope="col">#</th>
                     <th scope="col">班級</th>
                     <th scope="col">科系</th>
-                    <th scope="col">導師</th>
                     <th scope="col">功能</th>
                 </tr>
                 </thead>
@@ -32,12 +31,12 @@
                     <td>{{ $array_item['team'] }}</td>
                     <td>{{ $array_item['department'] }}</td>
                     <td style="width: 150px">
-{{--                        <a href="{{route('admins.teams.show',$array_item['team'])}}" class="btn btn-primary btn-sm">詳細</a>--}}
-{{--                        <form action="{{route('admins.teams.destroy',$array_item['team'])}}" method="post" style="display: inline-block">--}}
-{{--                            @method('delete')--}}
-{{--                            @csrf--}}
-{{--                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>--}}
-{{--                        </form>--}}
+                        <a href="{{route('admins.teams.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
+                        <form action="{{route('admins.teams.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
