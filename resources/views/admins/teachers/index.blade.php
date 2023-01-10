@@ -33,8 +33,8 @@
                     <td>{{ $array_item['team'] }}</td>
                     <td>{{ $array_item['student'] }}</td>
                     <td style="width: 150px">
-                        <a href="{{route('admins.students.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
-                        <form action="{{route('admins.students.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
+                        <a href="{{route('admins.teachers.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
+                        <form action="{{route('admins.teachers.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm">刪除</button>

@@ -62,15 +62,31 @@ class AccountTeacherController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Teacher $teacher)
     {
-        //
+        $array=[];
+        $teams=$teacher->team()->get();
+        foreach ($teams as $team){
+            $departments=$teacher->department()->get();
+            foreach ($departments as $department){
+                $users=$teacher->user()->get();
+                foreach ($users as $user){
+                    $array=[
+                        'id'=>$teacher->id,
+                        'name'=>$user->name,
+                        'department'=>$department->name,
+                        'team'=>$team->class,
+                        'email'=>$user->email,
+                        'password'=>$user->password,
+                    ];
+                }
+
+            }
+        }
+        $data=[
+            'array'=>$array
+        ];
+        return view('admins.teachers.show',$data);
     }
 
     /**

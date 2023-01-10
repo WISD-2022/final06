@@ -85,10 +85,10 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/',[AccountTeacherController::class,'index'])->name('index');//教師帳號列表
         Route::get('/create',[AccountTeacherController::class,'create'])->name('create');//新增教師帳號
         Route::post('/',[AccountTeacherController::class,'store'])->name('store');//儲存教師帳號
-        Route::get('/{student}',[AccountTeacherController::class,'show'])->name('show');//教師帳號詳細資料
-        Route::get('/{student}/edit',[AccountTeacherController::class,'edit'])->name('edit');//編輯教師帳號
-        Route::patch('/{student}',[AccountTeacherController::class,'update'])->name('update');//更新教師帳號
-        Route::delete('/{student}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
+        Route::get('/{teacher}',[AccountTeacherController::class,'show'])->name('show');//教師帳號詳細資料
+        Route::get('/{teacher}/edit',[AccountTeacherController::class,'edit'])->name('edit');//編輯教師帳號
+        Route::patch('/{teacher}',[AccountTeacherController::class,'update'])->name('update');//更新教師帳號
+        Route::delete('/{teacher}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
     });
 
 });
