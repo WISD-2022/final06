@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AccountAdminController extends Controller
@@ -9,7 +10,11 @@ class AccountAdminController extends Controller
 
     public function index()
     {
-        //
+        $users=User::where('type','=','0')->get();
+        $data=[
+            'users'=>$users
+        ];
+        return view('admins.admins.index',$data);
     }
 
     public function create()

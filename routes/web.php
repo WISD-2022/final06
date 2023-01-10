@@ -70,14 +70,6 @@ Route::prefix('students')->name('students.')->group(function(){
 //管理員
 Route::prefix('admins')->name('admins.')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
-    //管理員帳號管理
-    Route::get('/list',[AccountAdminController::class,'index'])->name('list');//教師帳號列表
-    Route::get('/create',[AccountAdminController::class,'create'])->name('create');//新增教師帳號
-    Route::post('/',[AccountAdminController::class,'store'])->name('store');//儲存教師帳號
-    Route::get('/{admin}',[AccountAdminController::class,'show'])->name('show');//教師帳號詳細資料
-    Route::get('/{admin}/edit',[AccountAdminController::class,'edit'])->name('edit');//編輯教師帳號
-    Route::patch('/{admin}',[AccountAdminController::class,'update'])->name('update');//更新教師帳號
-    Route::delete('/{admin}',[AccountAdminController::class,'destroy'])->name('destroy');//刪除教師帳號
 
     //學生帳號管理
     Route::prefix('students')->name('students.')->group(function(){
@@ -100,6 +92,16 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::patch('/{teacher}',[AccountTeacherController::class,'update'])->name('update');//更新教師帳號
         Route::delete('/{teacher}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
     });
+
+    //管理員帳號管理
+    Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表
+    Route::get('/create',[AccountAdminController::class,'create'])->name('create');//新增管理員帳號
+    Route::post('/',[AccountAdminController::class,'store'])->name('store');//儲存管理員帳號
+    Route::get('/{admin}',[AccountAdminController::class,'show'])->name('show');//管理員帳號詳細資料
+    Route::get('/{admin}/edit',[AccountAdminController::class,'edit'])->name('edit');//編輯管理員帳號
+    Route::patch('/{admin}',[AccountAdminController::class,'update'])->name('update');//更新管理員帳號
+    Route::delete('/{admin}',[AccountAdminController::class,'destroy'])->name('destroy');//刪除管理員帳號
+
 });
 
 //教師
