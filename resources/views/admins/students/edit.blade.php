@@ -38,7 +38,7 @@
                     <label for="exampleFormControlInput1" class="form-label">班級</label>
                     <select name="team" id="team" class="form-select form-select" aria-label=".form-select example">
                         @foreach($teams as $team)
-                            <option value="{{$team->id}}" {{($team->name==$array['team'])?'selected':""}}>{{$team->class}}</option>
+                            <option value="{{$team->id}}" {{($team->class==$array['team'])?'selected':""}}>{{$team->class}}</option>
                         @endforeach
                     </select>
                 </div>

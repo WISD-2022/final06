@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Teacher;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -18,7 +21,7 @@ class AccountTeacherController extends Controller
             $teams = $teacher->team()->get();//三維
             $users = $teacher->user()->get();
             foreach ($teams as $team) {
-                $departments=$team->department()->get();
+                $departments=$teacher->department()->get();
                 foreach ($departments as $department) {
                     foreach ($users as $user) {
                         //array為三維陣列
@@ -89,27 +92,54 @@ class AccountTeacherController extends Controller
         return view('admins.teachers.show',$data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Teacher $teacher)
     {
-        //
+        //取得科系名稱
+        $departments_all=Department::all();
+        //取得班級名稱
+        $teams_all=Team::all();
+        //取得欄位資料
+        $array=[];
+        $teams=$teacher->team()->get();
+        foreach ($teams as $team){
+            $departments=$teacher->department()->get();
+            foreach ($departments as $department){
+                $users=$teacher->user()->get();
+                foreach ($users as $user){
+                    $array=[
+                        'id'=>$teacher->id,
+                        'name'=>$user->name,
+                        'department'=>$department->name,
+                        'team'=>$team->class,
+                        'email'=>$user->email,
+                        'password'=>$user->password,
+                    ];
+                }
+            }
+        }
+        $data=[
+            'array'=>$array,
+            'departments'=>$departments_all,
+            'teams'=>$teams_all,
+        ];
+        return view('admins.teachers.edit',$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Teacher $teacher)
     {
-        //
+        //查詢相關user資料
+        $user=User::find($teacher->user_id);
+        //更新資料至users
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+        ]);
+        //儲存資料至students
+        $teacher->update([
+            'department_id'=>$request->department,
+            'team_id'=>$request->team,
+        ]);
+        return redirect()->route('admins.teachers.index');
     }
 
     /**

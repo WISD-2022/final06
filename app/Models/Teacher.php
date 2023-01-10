@@ -12,7 +12,7 @@ class Teacher extends Model
         'user_id',
         'id',
         'department_id',
-        'class_id',
+        'team_id',
     ];
     public $timestamps = false;//不用儲存建立時間及修改時間
     public function user(){

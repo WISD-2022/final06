@@ -22,7 +22,7 @@ class AccountStudentController extends Controller
             $teams = $student->team()->get();//三維
             $users = $student->user()->get();
             foreach ($teams as $team) {
-                $departments=$team->department()->get();
+                $departments=$student->department()->get();
                 foreach ($departments as $department) {
                     foreach ($users as $user) {
                     //array為三維陣列
