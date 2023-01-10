@@ -1,35 +1,33 @@
 @extends('admins.layouts.master')
 
-@section('page-title', '新增班級')
+@section('page-title', '編輯班級')
 
 @section('page-content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">新增班級</h1>
+    <h1 class="mt-4">編輯班級</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">請假平台</li>
     </ol>
     <!-- Main Content -->
-    <form action="{{route('admins.teams.store')}}" method="post"  enctype="multipart/form-data">
-        @method('post')
+    <form action="{{route('admins.teams.update',$array['id'])}}"  method="post"  enctype="multipart/form-data">
+        @method('patch')
         <!--csrf驗證機制，產生隱藏的input，包含一組驗證密碼-->
         @csrf
         <div class="pt-4">
             <div class="row mb-3">
                 <div class="col-6">
-                    <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">班級</label>
-                    <select name="team" id="team" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select name="team" id="team" class="form-select form-select" aria-label=".form-select example">
                         @foreach($teams as $team)
-                            <option value="{{$team->id}}">{{$team->class}}</option>
+                            <option value="{{$team->id}}" {{($team->class==$array['team'])?'selected':""}}>{{$team->class}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-6">
-                    <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">科系</label>
-                    <select name="department" id="department" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select name="department" id="department" class="form-select form-select" aria-label=".form-select example">
                         @foreach($departments as $department)
-                        <option value="{{$department->id}}">{{$department->name}}</option>
+                            <option value="{{$department->id}}" {{($department->name==$array['department'])?'selected':""}}>{{$department->name}}</option>
                         @endforeach
                     </select>
                 </div>
