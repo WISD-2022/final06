@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AccountAdminController extends Controller
 {
@@ -24,11 +25,13 @@ class AccountAdminController extends Controller
 
     public function store(Request $request)
     {
+        //將密碼加密(使用哈希加密方式)
+        $password=Hash::make($request->password);
         User::create([
             'type'=>'0',
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$request->password,
+            'password'=>$password,
         ]);
         return redirect()->route('admins.list');
     }
@@ -42,19 +45,27 @@ class AccountAdminController extends Controller
         return view('admins.admins.show',$data);
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $data=[
+            'user'=>$user,
+        ];
+        return view('admins.admins.edit',$data);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+        ]);
+        return redirect()->route('admins.list');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect()->route('admins.list');
     }
 }
