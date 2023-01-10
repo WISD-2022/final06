@@ -98,7 +98,7 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/',[TeamController::class,'index'])->name('index');//班級列表
         Route::get('/create',[TeamController::class,'create'])->name('create');//新增班級
     });
-    
+
     //管理員帳號管理
     Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表
     Route::get('/create',[AccountAdminController::class,'create'])->name('create');//新增管理員帳號
