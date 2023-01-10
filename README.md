@@ -28,9 +28,9 @@
 ### 帳號管理(學生、教師、管理員)
 ![image](https://user-images.githubusercontent.com/113490250/211583233-8b093766-3ff4-4d05-81f0-514b194433b3.png)
 ### 新增帳號
-
+![image](https://user-images.githubusercontent.com/113490250/211594487-b9cf738d-481d-499f-980d-7dc2365e9a30.png)
 ### 帳號詳細資料
-
+![image](https://user-images.githubusercontent.com/113490250/211594575-b7fa4b64-5636-425f-b281-8e4ebd7996b9.png)
 ### 班級、科系管理
 
 
