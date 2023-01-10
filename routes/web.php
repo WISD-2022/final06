@@ -70,11 +70,12 @@ Route::prefix('admins')->name('admins.')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
     Route::prefix('students')->name('students.')->group(function(){
         Route::get('/',[AccountStudentController::class,'index'])->name('index');//學生帳號列表
-        //新增學生帳號
-        //儲存學生帳號
-        //編輯學生帳號
-        //更新學生帳號
-        //刪除學生帳號
+        Route::get('/create',[AccountStudentController::class,'create'])->name('create');//新增學生帳號
+        Route::post('/',[AccountStudentController::class,'store'])->name('store');//儲存學生帳號
+        Route::get('/{student}',[AccountStudentController::class,'show'])->name('show');//學生帳號詳細資料
+        Route::get('/{student}/edit',[AccountStudentController::class,'edit'])->name('edit');//編輯學生帳號
+        Route::patch('/update',[AccountStudentController::class,'update'])->name('update');//更新學生帳號
+        Route::delete('/{student}',[AccountStudentController::class,'destroy'])->name('destroy');//刪除學生帳號
     });
 
 });

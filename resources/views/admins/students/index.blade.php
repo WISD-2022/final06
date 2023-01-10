@@ -4,12 +4,12 @@
 
 @section('page-content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">帳號列表</h1>
+    <h1 class="mt-4">學生帳號列表</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">管理平台</li>
     </ol>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-success btn-sm" href="#">新增</a>
+        <a class="btn btn-success btn-sm" href="{{route('admins.students.create')}}">新增</a>
     </div>
     <!-- Main Content -->
     <div class="tab-pane fade show active" id="nav-show" role="tabpanel" aria-labelledby="nav-show-tab">
@@ -33,8 +33,8 @@
                     <td>{{ $array_item['team'] }}</td>
                     <td>{{ $array_item['student'] }}</td>
                     <td style="width: 150px">
-                        <a href="#" class="btn btn-primary btn-sm">詳細</a>
-                        <form action="#" method="post" style="display: inline-block">
+                        <a href="{{route('admins.students.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
+                        <form action="{{route('admins.students.destroy',$array_item['id'])}}" method="post" style="display: inline-block">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm">刪除</button>

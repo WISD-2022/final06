@@ -40,4 +40,51 @@ class AccountStudentController extends Controller
        ];
         return view('admins.students.index',$data);
     }
+
+    public function create(){
+        //
+    }
+
+    public function store(){
+        //
+    }
+
+    public function show(Student $student){
+        $array=[];
+        $teams=$student->team()->get();
+        foreach ($teams as $team){
+            $departments=$student->department()->get();
+            foreach ($departments as $department){
+                $users=$student->user()->get();
+                foreach ($users as $user){
+                    $array=[
+                        'name'=>$user->name,
+                        'student_id'=>$student->student_id,
+                        'department'=>$department->name,
+                        'team'=>$team->class,
+                        'sex'=>$student->sex,
+                        'number'=>$student->number,
+                        'email'=>$user->email,
+                        'password'=>$user->password,
+                    ];
+                }
+
+            }
+        }
+        $data=[
+            'array'=>$array
+        ];
+        return view('admins.students.show',$data);
+    }
+
+    public function edit(){
+        //
+    }
+
+    public function update(){
+        //
+    }
+    public function destroy(){
+        //
+    }
 }
