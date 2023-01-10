@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Leave;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;

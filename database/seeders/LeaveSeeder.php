@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Leave;
+use App\Models\Student;
+use http\Client\Curl\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +17,7 @@ class LeaveSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Leave::truncate();
+        Leave::factory(41)->create();
     }
 }

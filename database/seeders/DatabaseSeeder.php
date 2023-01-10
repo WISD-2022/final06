@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(UserSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;'); //開啟外鍵檢查
+        $this->call(LeaveSeeder::class);
 
 
     }
