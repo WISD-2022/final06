@@ -115,6 +115,8 @@
 ## 關聯式綱要圖
 
 ## 實際資料表欄位設計
+![image](https://user-images.githubusercontent.com/113490250/211631090-f4383ce8-32c2-4708-9dff-197b08b72858.png)
+![image](https://user-images.githubusercontent.com/113490250/211631150-73a6fe88-07dc-42e7-a27d-bbfb5c34263e.png)
 
 ## 初始專案與DB負責的同學
 - 初始專案 [3A932087 陳憶萱](https://github.com/3A932087)
