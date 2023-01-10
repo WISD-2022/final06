@@ -163,14 +163,12 @@ class AccountTeacherController extends Controller
         return redirect()->route('admins.teachers.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Teacher $teacher)
     {
-        //
+        $user=User::find($teacher->user_id);
+        echo $user;
+        Teacher::destroy($teacher->id);
+        User::destroy($user->id);
+        return redirect()->route('admins.teachers.index');
     }
 }
