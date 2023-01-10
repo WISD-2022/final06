@@ -117,12 +117,7 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/{department}/edit',[DepartmentController::class,'edit'])->name('edit');//編輯科系
         Route::patch('/{department}',[DepartmentController::class,'update'])->name('update');//更新科系
     });
-
-    //班級管理
-    Route::prefix('teams')->name('teams.')->group(function(){
-        Route::get('/',[TeamController::class,'index'])->name('index');//班級列表
-        Route::get('/create',[TeamController::class,'create'])->name('create');//新增班級
-    });
+    
 
     //管理員帳號管理
     Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表
