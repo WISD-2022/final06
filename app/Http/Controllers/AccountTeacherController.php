@@ -3,49 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
-
-class AccountStudentController extends Controller
+class AccountTeacherController extends Controller
 {
+
     public function index()
     {
         $array=array();
         $count=0;
-        $students=Student::all();//三維陣列
-        foreach ($students as $student) {
-            $teams = $student->team()->get();//三維
-            $users = $student->user()->get();
+        $teachers=Teacher::all();//三維陣列
+        foreach ($teachers as $teacher) {
+            $teams = $teacher->team()->get();//三維
+            $users = $teacher->user()->get();
             foreach ($teams as $team) {
-                $departments=$student->department()->get();
+                $departments=$teacher->department()->get();
                 foreach ($departments as $department) {
                     foreach ($users as $user) {
-                    //array為三維陣列
-                    //取得值得方式為，foreach($array as $array_item){$array_item['key值']}
-                    $array = Arr::add($array, $count, [
-                        //'key值'=>value
-                        'id'=>$student->id,
-                        'department' => $department->name,
-                        'team' => $team->class,
-                        'student' =>$user->name,
-                    ]);
-                    $count++;
+                        //array為三維陣列
+                        //取得值得方式為，foreach($array as $array_item){$array_item['key值']}
+                        $array = Arr::add($array, $count, [
+                            //'key值'=>value
+                            'id'=>$teacher->id,
+                            'department' => $department->name,
+                            'team' => $team->class,
+                            'student' =>$user->name,
+                        ]);
+                        $count++;
                     }
                 }
             }
         }
-       $data=[
-           'array'=>$array,
-       ];
-        return view('admins.students.index',$data);
+        $data=[
+            'array'=>$array,
+        ];
+        return view('admins.teachers.index',$data);
     }
 
-    public function create(){
+    public function create()
+    {
         //取得科系名稱
         $departments=Department::all();
         //取得班級名稱
@@ -54,23 +55,19 @@ class AccountStudentController extends Controller
             'departments'=>$departments,
             'teams'=>$teams,
         ];
-        return view('admins.students.create',$data);
+        return view('admins.teachers.create',$data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         //資料驗證
         $this->validate($request,[
             'name'=>'required',
-            'student_id'=>'required',
             'department'=>'required',
             'team'=>'required',
-            'sex'=>'required',
-            'number'=>'required',
             'email'=>'required',
             'password'=>'required',
         ]);
-        echo $request->team;
-            echo $request->sex;
         //將密碼加密(使用哈希加密方式)
         $password=Hash::make($request->password);
         //儲存資料至users
@@ -80,34 +77,29 @@ class AccountStudentController extends Controller
             'email'=>$request->email,
             'password'=>$password,
         ]);
-//        //儲存資料至students
-        Student::create([
-           'user_id'=>$user->id,
+//        //儲存資料至teachers
+        Teacher::create([
+            'user_id'=>$user->id,
             'department_id'=>$request->department,
             'team_id'=>$request->team,
-            'student_id'=>$request->student_id,
-            'sex'=>$request->sex,
-            'number'=>$request->number,
         ]);
-        return redirect()->route('admins.students.index');
+        return redirect()->route('admins.teachers.index');
     }
 
-    public function show(Student $student){
+    public function show(Teacher $teacher)
+    {
         $array=[];
-        $teams=$student->team()->get();
+        $teams=$teacher->team()->get();
         foreach ($teams as $team){
-            $departments=$student->department()->get();
+            $departments=$teacher->department()->get();
             foreach ($departments as $department){
-                $users=$student->user()->get();
+                $users=$teacher->user()->get();
                 foreach ($users as $user){
                     $array=[
-                        'id'=>$student->id,
+                        'id'=>$teacher->id,
                         'name'=>$user->name,
-                        'student_id'=>$student->student_id,
                         'department'=>$department->name,
                         'team'=>$team->class,
-                        'sex'=>$student->sex,
-                        'number'=>$student->number,
                         'email'=>$user->email,
                         'password'=>$user->password,
                     ];
@@ -118,35 +110,32 @@ class AccountStudentController extends Controller
         $data=[
             'array'=>$array
         ];
-        return view('admins.students.show',$data);
+        return view('admins.teachers.show',$data);
     }
 
-    public function edit(Student $student){
+    public function edit(Teacher $teacher)
+    {
         //取得科系名稱
         $departments_all=Department::all();
         //取得班級名稱
         $teams_all=Team::all();
         //取得欄位資料
         $array=[];
-        $teams=$student->team()->get();
+        $teams=$teacher->team()->get();
         foreach ($teams as $team){
-            $departments=$student->department()->get();
+            $departments=$teacher->department()->get();
             foreach ($departments as $department){
-                $users=$student->user()->get();
+                $users=$teacher->user()->get();
                 foreach ($users as $user){
                     $array=[
-                        'id'=>$student->id,
+                        'id'=>$teacher->id,
                         'name'=>$user->name,
-                        'student_id'=>$student->student_id,
                         'department'=>$department->name,
                         'team'=>$team->class,
-                        'sex'=>$student->sex,
-                        'number'=>$student->number,
                         'email'=>$user->email,
                         'password'=>$user->password,
                     ];
                 }
-
             }
         }
         $data=[
@@ -154,33 +143,32 @@ class AccountStudentController extends Controller
             'departments'=>$departments_all,
             'teams'=>$teams_all,
         ];
-        return view('admins.students.edit',$data);
+        return view('admins.teachers.edit',$data);
     }
 
-    public function update(Request $request,Student $student){
+    public function update(Request $request, Teacher $teacher)
+    {
         //查詢相關user資料
-        $user=User::find($student->user_id);
-        echo $student;
+        $user=User::find($teacher->user_id);
         //更新資料至users
         $user->update([
             'name'=>$request->name,
             'email'=>$request->email,
         ]);
         //儲存資料至students
-        $student->update([
+        $teacher->update([
             'department_id'=>$request->department,
             'team_id'=>$request->team,
-            'student_id'=>$request->student_id,
-            'sex'=>$request->sex,
-            'number'=>$request->number,
         ]);
-        return redirect()->route('admins.students.index');
+        return redirect()->route('admins.teachers.index');
     }
-    public function destroy(Student $student){
-        $user=User::find($student->user_id);
+
+    public function destroy(Teacher $teacher)
+    {
+        $user=User::find($teacher->user_id);
         echo $user;
-        Student::destroy($student->id);
+        Teacher::destroy($teacher->id);
         User::destroy($user->id);
-        return redirect()->route('admins.students.index');
+        return redirect()->route('admins.teachers.index');
     }
 }
