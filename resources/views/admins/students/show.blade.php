@@ -13,42 +13,42 @@
         <div class=" row mb-3">
             <div class="col-6">
                 <label for="exampleFormControlTextarea1" class="form-label">姓名</label>
-                <input name="name" id="name" type="text" class="form-control" disabled value="{{$array['name']}}">
+                <input name="name" id="name" type="text" class="form-control-plaintext" readonly  value="{{$array['name']}}">
             </div>
             <div class="col-6">
                 <label for="exampleFormControlTextarea1" class="form-label">學號</label>
-                <input name="student_id" id="student_id" type="text" class="form-control" disabled value="{{$array["student_id"]}}">
+                <input name="student_id" id="student_id" type="text" class="form-control-plaintext" readonly value="{{$array["student_id"]}}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">科系</label>
-                <input name="department" id="department" type="text" class="form-control" disabled value="{{$array['department']}}">
+                <input name="department" id="department" type="text" class="form-control-plaintext" readonly value="{{$array['department']}}">
             </div>
 
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">班級</label>
-                <input name="team" id="team" type="text" class="form-control" disabled value="{{$array['team']}}">
+                <input name="team" id="team" type="text" class="form-control-plaintext" readonly value="{{$array['team']}}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">性別</label>
-                <input name="sex" id="sex" type="text" class="form-control" disabled value="{{$array['sex']}}">
+                <input name="sex" id="sex" type="text" class="form-control-plaintext" readonly  value="{{$array['sex']}}">
             </div>
 
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">身分證字號</label>
-                <input name="number" id="number" type="text" class="form-control" disabled value="{{$array['number']}}">
+                <input name="number" id="number" type="text" class="form-control-plaintext" readonly  value="{{$array['number']}}">
             </div>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">電子郵件</label>
-            <input name="email" id="email" type="text" class="form-control" disabled value="{{$array['email']}}">
+            <input name="email" id="email" type="text" class="form-control-plaintext" readonly  value="{{$array['email']}}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">密碼</label>
-            <input name="password" id="password" type="text" class="form-control" disabled value="{{$array['password']}}">
+            <input name="password" id="password" type="text" class="form-control-plaintext" readonly  value="{{$array['password']}}">
         </div>
     </div>
 </div>

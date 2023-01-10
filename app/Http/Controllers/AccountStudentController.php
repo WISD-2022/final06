@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Student;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 
 class AccountStudentController extends Controller
@@ -42,11 +46,50 @@ class AccountStudentController extends Controller
     }
 
     public function create(){
-        //
+        //取得科系名稱
+        $departments=Department::all();
+        //取得班級名稱
+        $teams=Team::all();
+        $data=[
+            'departments'=>$departments,
+            'teams'=>$teams,
+        ];
+        return view('admins.students.create',$data);
     }
 
-    public function store(){
-        //
+    public function store(Request $request){
+        //資料驗證
+//        $this->validate($request,[
+//            'name'=>'required',
+//            'student_id'=>'required',
+//            'department'=>'required',
+//            'team'=>'required',
+//            'sex'=>'required',
+//            'number'=>'required',
+//            'email'=>'required',
+//            'password'=>'required',
+//        ]);
+        echo $request->team;
+            echo $request->sex;
+        //將密碼加密(使用哈希加密方式)
+        $password=Hash::make($request->password);
+        //儲存資料至users
+        $uaer=User::create([
+            'type'=>'1',
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$password,//尋找加密方式
+        ]);
+//        //儲存資料至students
+        Student::create([
+           'user_id'=>$uaer->id,
+            'department_id'=>$request->department,
+            'team_id'=>$request->team,
+            'student_id'=>$request->student_id,
+            'sex'=>$request->sex,
+            'number'=>$request->number,
+        ]);
+        return redirect()->route('admins.students.index');
     }
 
     public function show(Student $student){
