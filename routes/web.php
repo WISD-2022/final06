@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountTeacherController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AccountStudentController;
@@ -68,6 +69,8 @@ Route::prefix('students')->name('students.')->group(function(){
 //管理員
 Route::prefix('admins')->name('admins.')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
+
+    //學生帳號管理
     Route::prefix('students')->name('students.')->group(function(){
         Route::get('/',[AccountStudentController::class,'index'])->name('index');//學生帳號列表
         Route::get('/create',[AccountStudentController::class,'create'])->name('create');//新增學生帳號
@@ -76,6 +79,16 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/{student}/edit',[AccountStudentController::class,'edit'])->name('edit');//編輯學生帳號
         Route::patch('/{student}',[AccountStudentController::class,'update'])->name('update');//更新學生帳號
         Route::delete('/{student}',[AccountStudentController::class,'destroy'])->name('destroy');//刪除學生帳號
+    });
+    //教師帳號管理
+    Route::prefix('teachers')->name('teachers.')->group(function(){
+        Route::get('/',[AccountTeacherController::class,'index'])->name('index');//教師帳號列表
+        Route::get('/create',[AccountTeacherController::class,'create'])->name('create');//新增教師帳號
+        Route::post('/',[AccountTeacherController::class,'store'])->name('store');//儲存教師帳號
+        Route::get('/{student}',[AccountTeacherController::class,'show'])->name('show');//教師帳號詳細資料
+        Route::get('/{student}/edit',[AccountTeacherController::class,'edit'])->name('edit');//編輯教師帳號
+        Route::patch('/{student}',[AccountTeacherController::class,'update'])->name('update');//更新教師帳號
+        Route::delete('/{student}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
     });
 
 });
