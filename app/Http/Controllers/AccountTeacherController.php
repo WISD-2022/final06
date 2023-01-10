@@ -2,18 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class AccountTeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $array=array();
+        $count=0;
+        $teachers=Teacher::all();//三維陣列
+        foreach ($teachers as $teacher) {
+            $teams = $teacher->team()->get();//三維
+            $users = $teacher->user()->get();
+            foreach ($teams as $team) {
+                $departments=$team->department()->get();
+                foreach ($departments as $department) {
+                    foreach ($users as $user) {
+                        //array為三維陣列
+                        //取得值得方式為，foreach($array as $array_item){$array_item['key值']}
+                        $array = Arr::add($array, $count, [
+                            //'key值'=>value
+                            'id'=>$teacher->id,
+                            'department' => $department->name,
+                            'team' => $team->class,
+                            'student' =>$user->name,
+                        ]);
+                        $count++;
+                    }
+                }
+            }
+        }
+        $data=[
+            'array'=>$array,
+        ];
+        return view('admins.teachers.index',$data);
     }
 
     /**

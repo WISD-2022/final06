@@ -8,7 +8,7 @@
                     </div>
                     學生帳號管理
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admins.teachers.index')}}">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
