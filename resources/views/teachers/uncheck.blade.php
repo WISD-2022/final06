@@ -75,7 +75,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="{{route('teachers.update',$leave->id)}}" method="post" enctype="multipart/form-data" style="display: inline-block">
+            <form action="{{route('teachers.update',$array_item['id'])}}" method="post" enctype="multipart/form-data" style="display: inline-block">
                 @method('patch')
                 @csrf
                 <div class="modal-body">

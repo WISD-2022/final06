@@ -19,8 +19,11 @@ class StudentController extends Controller
     {
         //取得當前使用者的假單
         $user=Auth::user();
+        $students=$user->student()->get();
         //取得學生id為1的假單
-        $leaves=Leave::where('user_id','=',$user->id)->get();
+        foreach ($students as $student){
+            $leaves=Leave::where('student_id','=',$student->id)->get();
+        }
         $data=[
           'leaves'=>$leaves
         ];
@@ -51,11 +54,15 @@ class StudentController extends Controller
         }
         //登入者身分(未完成)
         $user=Auth::user();
+        $students=$user->student()->get();
+        foreach ($students as $student){
+            $studentid=$student->id;
+        }
         //取得現在時間
         $application_date=date('y/n/j');
         //儲存資料
         Leave::create([
-            'user_id'=>$user->id,//待修改
+            'student_id'=>$studentid,//待修改
             'application_date'=>$application_date,
             'leave'=>$request->leave,
             'reason'=>$request->reason,
@@ -64,6 +71,7 @@ class StudentController extends Controller
             'end_time'=>$request->end_time,
             'remark'=>$request->remark,
         ]);
+        echo 12;
         return redirect()->route('students.list');
     }
 

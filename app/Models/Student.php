@@ -17,6 +17,10 @@ class Student extends Model
         'sex',
         'number',
     ];
+    public function leave(){
+        //一個學生有多張假單
+        return $this->hasMany(Leave::class);
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
