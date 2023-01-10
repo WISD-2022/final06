@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AccountStudentController;
 use App\Models\Department;
@@ -43,7 +44,7 @@ Route::middleware([
         elseif($type=='2'){//登入身份為導師
             return redirect('teachers');
         }
-        //return view('dashboard');
+        return view('dashboard');
         //return redirect('students');
     })->name('dashboard');
 });
@@ -66,7 +67,15 @@ Route::prefix('students')->name('students.')->group(function(){
 
 //管理員
 Route::prefix('admins')->name('admins.')->group(function(){
-    Route::get('/',[AccountStudentController::class,'index'])->name('index');//管理員首頁
+    Route::get('/',[AdminController::class,'index'])->name('index');//管理員首頁
+    Route::prefix('students')->name('students.')->group(function(){
+        Route::get('/',[AccountStudentController::class,'index'])->name('index');//學生帳號列表
+        //新增學生帳號
+        //儲存學生帳號
+        //編輯學生帳號
+        //更新學生帳號
+        //刪除學生帳號
+    });
 
 });
 
@@ -76,6 +85,7 @@ Route::prefix('teachers')->name('teachers.')->group(function(){
     Route::get('/list',[TeacherController::class,'list'])->name('list');//所有假單
     Route::get('/uncheck',[TeacherController::class,'uncheck'])->name('uncheck');//未審核假單
     Route::get('/{leave}',[TeacherController::class,'show'])->name('show');//假單詳細資料
+    Route::patch('/{leave}',[TeacherController::class,'update'])->name('update');//審核完假單
 });
 
 

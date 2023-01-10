@@ -24,6 +24,10 @@ class User extends Authenticatable
     public function teacher(){
         return $this->hasOne(Teacher::class);
     }
+    public function leave(){
+        //一個學生有多張假單
+        return $this->hasMany(Leave::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

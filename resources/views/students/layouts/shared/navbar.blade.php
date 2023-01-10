@@ -26,7 +26,6 @@
 {{--                <li><a class="dropdown-item" href="#!">Logout</a></li>--}}
                 <!-- Authentication -->
                 <form method="get" action="{{ route('logout') }}" x-data>
-                    @method('get')
                     @csrf
 
                     <x-jet-dropdown-link href="{{ route('logout') }}"

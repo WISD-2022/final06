@@ -1,66 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## 系統畫面
+### 學生首頁
+![image](https://user-images.githubusercontent.com/113490250/211313989-d8420578-0018-41bf-b8f9-88f442863b81.png)
+### 學生查看假單
+- 學生能查看自己的假單，點選詳細能查看假單詳細資料，點選取消會刪除假單
+![image](https://user-images.githubusercontent.com/113490250/211314579-1423d945-7896-4b37-854a-dab9a0fb511a.png)
+### 學生查看假單詳細資料
+![image](https://user-images.githubusercontent.com/113490250/211314821-8b36562f-2f4c-4879-a9af-68ccf18de334.png)
+### 學生新增假單
+![image](https://user-images.githubusercontent.com/113490250/211315006-c89dcd2d-2f9a-422e-aeee-95859ef2ac63.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 系統名稱及作用 
 
-## About Laravel
+請假平台
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 學生能請假以及查詢請假紀錄
+- 老師能審核學生假單以及查詢班上學生假單
+- 管理員能管理學生及老師帳戶
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 系統的主要案例(功能)與負責的同學
+### 學生
+- 首頁Route::get('/',[StudentController::class,'index'])->name('index'); [3A932087 陳憶萱](https://github.com/3A932087)
+- 假單列表Route::get('/list',[StudentController::class,'list'])->name('list'); [3A932087 陳憶萱](https://github.com/3A932087)
+- 新增假單Route::get('/create',[StudentController::class,'create'])->name('create'); [3A932087 陳憶萱](https://github.com/3A932087)
+- 儲存假單Route::post('/',[StudentController::class,'store'])->name('store'); [3A932087 陳憶萱](https://github.com/3A932087)
+- 假單詳細資料Route::get('/{leave}',[StudentController::class,'show'])->name('show'); [3A932087 陳憶萱](https://github.com/3A932087)
+- 刪除假單Route::delete('/{leave}',[StudentController::class,'destroy'])->name('destroy'); [3A932087 陳憶萱](https://github.com/3A932087)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 教師
+- 首頁Route::get('/',[TeacherController::class,'index'])->name('index'); [3A932113 楊淑媚](https://github.com/3A932113)
+- 所有假單 Route::get('/list',[TeacherController::class,'list'])->name('list'); [3A932113 楊淑媚](https://github.com/3A932113)
+- 未審核假單Route::get('/uncheck',[TeacherController::class,'uncheck'])->name('uncheck'); [3A932113 楊淑媚](https://github.com/3A932113)
+- 假單詳細資料Route::get('/{leave}',[TeacherController::class,'show'])->name('show');; [3A932113 楊淑媚](https://github.com/3A932113)
 
-## Learning Laravel
+### 管理員
+- 學生帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+- 教師帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+- 管理員帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
+- 科系管理 [3A932113 楊淑媚](https://github.com/3A932113)
+- 班級管理 [3A932113 楊淑媚](https://github.com/3A932113)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ERD
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 - **[Lendio](https://lendio.com)**
 
-## Contributing
+## 關聯式綱要圖
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## 實際資料表欄位設計
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## 初始專案與DB負責的同學
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-初始專案 [3A932087 陳憶萱](https://github.com/3A932087)
 
-## License
+-資料庫及資料表建立、資料表關連 [3A932087 陳憶萱](https://github.com/3A932087)、[3A932113 楊淑媚](https://github.com/3A932113)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 額外使用的套件或樣板
+
+- 前台樣板
+
+- 後台樣板
+
+
+## 系統測試資料存放位置
+
+## 系統使用者測試帳號
+### 前台
+- 學生
+
+帳號：
+
+密碼：
+- 老師
+
+帳號：
+
+密碼：
+### 後台
+- 管理者
+
+帳號： 
+
+密碼： 
+
+## 系統開發人員與工作分配
+- [3A932087 陳憶萱](https://github.com/3A932087)
+
+- [3A932113 楊淑媚](https://github.com/3A932113)

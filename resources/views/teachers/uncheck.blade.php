@@ -22,9 +22,9 @@
                     <th scope="col">功能</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 @foreach($array as $array_item)<!--activities陣列內有幾筆資料就會重複執行幾次-->
+                @if($array_item['check'] == 0)
                 <tr>
                     <th scope="row" style="width: 50px">{{ $array_item['id'] }}</th><!--印出資料表內的id欄位-->
                     @if($array_item['leave'] == 1)
@@ -45,13 +45,64 @@
                     @endif
                     <td style="width: 150px">
                         <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
-                        <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-primary btn-sm">通過</a>
-                        <a href="{{route('teachers.show',$array_item['id'])}}" class="btn btn-danger btn-sm">不通過</a>
+                        <!-- 互動式視窗按鈕 -->
+                        @if($array_item['check'] == 0)
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                審核
+                            </button>
+                        @else
+                             {{--                            --}}
+                        @endif
                     </td>
                 </tr>
+                @else
+                    {{--                    --}}
+                @endif
                 @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- 互動視窗 -->
+<!-- 互動視窗內容 -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">審核</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="{{route('teachers.update',$leave->id)}}" method="post" enctype="multipart/form-data" style="display: inline-block">
+                @method('patch')
+                @csrf
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="check" id="check" value="1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            同意
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="check" id="check" value="2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            不同意
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">審核意見</label>
+                        <textarea class="form-control" id="opinion" name="opinion" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >
+                        送出
+                    </button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

@@ -21,12 +21,37 @@ class TeacherController extends Controller
     }
     public function list()
     {
-        //取得當前使用者的假單
-        $user=Auth::user();
+        $array=array();
+        $count=0;
+
+        //取得當前使用者學生的假單
+        $users=Auth::User();
+        $teachers=$users->teacher()->get();//取得與user相關的teacher資料列
+        foreach ($teachers as $teacher)
+        {
+            $teams=$teacher->team()->get();//取得與teacher相關的team資料列
+            foreach ($teams as $team)
+            {
+                $students=$team->student()->get();//取得與team相關的student資料列
+                echo $students;
+                foreach ($students as $student)
+                {
+                    $us = $student->user()->get();//透過student取得user的資料
+                    foreach ($us as $u)
+                    {
+                        $leaves = $u->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
+                        foreach ($leaves as $leave)
+                        {
+                            $array = Arr::add($array, $count, $leave);
+                            $count++;
+                        }
+                    }
+                }
+            }
+        }
         //取得學生id為1的假單
-        $leaves=Leave::where('student_id','=',$user->id)->get();
         $data=[
-            'leaves'=>$leaves
+            'array'=>$array
         ];
         return view('teachers.list',$data);
     }
@@ -40,41 +65,40 @@ class TeacherController extends Controller
         //$teacher=Teacher::where('user_id','=',$user->id)->get();//取得當前使用者的id
 //        foreach ($users as $user){
 //            echo $users;
-            $teachers=$users->teacher()->get();//取得與user相關的teacher資料列
-
+        $teachers=$users->teacher()->get();//取得與user相關的teacher資料列
 
         foreach ($teachers as $teacher)
             {
-                    $teams=$teacher->team()->get();//取得與teacher相關的team資料列
+                $teams=$teacher->team()->get();//取得與teacher相關的team資料列
                 foreach ($teams as $team)
                 {
 
                     $students=$team->student()->get();//取得與team相關的student資料列
+                    echo $students;
                     foreach ($students as $student)
+                    {
+                        $us = $student->user()->get();//透過student取得user的資料
+                        foreach ($us as $u)
                         {
-                            //透過student取得user的資料
-                        $leaves=$student->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
-
-                        foreach ($leaves as $leave)
-                        {
-
-                            $array = Arr::add($array, $count, $leave);
-                            $count++;
-                            //echo $array;
-//                            echo $leave;
+                            $leaves = $u->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
+                            foreach ($leaves as $leave)
+                            {
+                                $array = Arr::add($array, $count, $leave);
+                                $count++;
+                            }
                         }
                     }
                 }
             }
 
-//        }
 
      //取得學生id為1的假單
      $data=[
-            'array'=>$array
+            'array'=>$array,
+            'leave'=>$leave,
       ];
       return view('teachers.uncheck',$data);
-    }
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -129,9 +153,18 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Leave $leave)
     {
-        //
+        //取得送出時間
+        $application_date=date('y/n/j');
+        //儲存資料
+        $leave->update([
+            'application_date'=>$application_date,
+            'check'=>$request->check,
+            'opinion'=>$request->opinion,
+
+        ]);
+        return redirect()->route('teachers.list');
     }
 
     /**
