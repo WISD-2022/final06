@@ -45,7 +45,7 @@
         </div>
         <div>
             <!-- 互動式視窗按鈕 -->
-            @if('check' == 0)
+            @if($leave->check == 0)
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     審核
                 </button>

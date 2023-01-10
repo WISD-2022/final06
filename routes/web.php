@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AccountStudentController;
 use App\Models\Department;
-use App\Models\Team;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +93,12 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::delete('/{teacher}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
     });
 
+    //班級管理
+    Route::prefix('teams')->name('teams.')->group(function(){
+        Route::get('/',[TeamController::class,'index'])->name('index');//班級列表
+        Route::get('/create',[TeamController::class,'create'])->name('create');//新增班級
+    });
+    
     //管理員帳號管理
     Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表
     Route::get('/create',[AccountAdminController::class,'create'])->name('create');//新增管理員帳號
@@ -101,7 +107,6 @@ Route::prefix('admins')->name('admins.')->group(function(){
     Route::get('/{user}/edit',[AccountAdminController::class,'edit'])->name('edit');//編輯管理員帳號
     Route::patch('/{user}',[AccountAdminController::class,'update'])->name('update');//更新管理員帳號
     Route::delete('/{user}',[AccountAdminController::class,'destroy'])->name('destroy');//刪除管理員帳號
-
 });
 
 //教師
