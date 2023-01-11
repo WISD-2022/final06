@@ -111,8 +111,10 @@
 更新班級Route::patch('/{team}',[TeamController::class,'update'])->name('update');
 </pre>
 ## ERD
+![image](https://user-images.githubusercontent.com/113490250/211694476-34a08254-f329-4338-9a89-635730bd9b5b.png)
 
 ## 關聯式綱要圖
+![image](https://user-images.githubusercontent.com/113490250/211694432-78d3ff4d-8fe5-446f-a36a-4d461ffdcf8c.png)
 
 ## 實際資料表欄位設計
 ![image](https://user-images.githubusercontent.com/113490250/211631090-f4383ce8-32c2-4708-9dff-197b08b72858.png)
