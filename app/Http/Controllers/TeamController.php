@@ -22,27 +22,23 @@ class TeamController extends Controller
     {
         $array=array();
         $count=0;
-        $teachers=Teacher::all();//三維陣列
-        foreach ($teachers as $teacher) {
-            $teams = $teacher->team()->get();//三維
-            $users = $teacher->user()->get();
+        $teams=Team::all();
             foreach ($teams as $team) {
                 $departments=$team->department()->get();
                 foreach ($departments as $department) {
-                    foreach ($users as $user) {
-                        //array為三維陣列
-                        //取得值得方式為，foreach($array as $array_item){$array_item['key值']}
-                        $array = Arr::add($array, $count, [
-                            //'key值'=>value
-                            'id'=>$teacher->id,
-                            'team' => $team->class,
-                            'department' => $department->name,
-                        ]);
-                        $count++;
-                    }
+                    //array為三維陣列
+                    //取得值得方式為，foreach($array as $array_item){$array_item['key值']
+                    $array = Arr::add($array, $count, [
+                        //'key值'=>value
+                        'id'=>$team->id,
+                        'team' => $team->class,
+                        'department' => $department->name,
+                    ]);
+                    $count++;
+
                 }
             }
-        }
+
         $data=[
             'array'=>$array,
         ];
@@ -58,11 +54,8 @@ class TeamController extends Controller
     {
         //取得科系名稱
         $departments=Department::all();
-        //取得班級名稱
-        $teams=Team::all();
         $data=[
             'departments'=>$departments,
-            'teams'=>$teams,
         ];
         return view('admins.teams.create',$data);
     }
@@ -79,16 +72,13 @@ class TeamController extends Controller
         $this->validate($request,[
             'team'=>'required',
             'department'=>'required',
-        ]);
-        echo $request->team;
-        //儲存資料至users
-        $user=User::create([
-            'type'=>'1',
+            'admission'=>'required',
         ]);
          //儲存資料至teams
         Team::create([
-            'team_id'=>$request->team,
             'department_id'=>$request->department,
+            'class'=>$request->team,
+            'admission'=>$request->admission,
         ]);
         return redirect()->route('admins.teams.index');
     }
@@ -104,19 +94,15 @@ class TeamController extends Controller
         $array=[];
         $departments=$team->department()->get();
         foreach ($departments as $department){
-            $teachers=$department->teacher()->get();
-            foreach ($teachers as $teacher){
-                $users=$teacher->user()->get();
-                foreach ($users as $user){
                     $array=[
-                        'id'=>$teacher->id,
-                        'teacher'=>$user->teacher,
+                        'id'=>$team->id,
+                        'admission'=>$team->admission,
                         'team'=>$team->class,
                         'department'=>$department->name,
 
                     ];
-                }
-            }
+
+
         }
         $data=[
             'array'=>$array
@@ -132,31 +118,23 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //取得班級名稱
-        $teams_all=Team::all();
         //取得科系名稱
         $departments_all=Department::all();
         //取得欄位資料
         $array=[];
         $departments=$team->department()->get();
         foreach ($departments as $department){
-            $teachers=$department->teacher()->get();
-            foreach ($teachers as $teacher){
-                $users=$teacher->user()->get();
-                foreach ($users as $user){
                     $array=[
-                        'id'=>$teacher->id,
-                        'teacher'=>$user->teacher,
+                        'id'=>$team->id,
                         'team'=>$team->class,
                         'department'=>$department->name,
-
+                        'admission'=>$team->admission,
                     ];
-                }
-            }
+
+
         }
         $data=[
             'array'=>$array,
-            'teams'=>$teams_all,
             'departments'=>$departments_all,
         ];
         return view('admins.teams.edit',$data);
@@ -171,10 +149,12 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+
         //儲存資料至teams
         $team->update([
-            'team_id'=>$request->team,
             'department_id'=>$request->department,
+            'class'=>$request->team,
+            'admission'=>$request->admission,
         ]);
         return redirect()->route('admins.teams.index');
     }
@@ -187,10 +167,8 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        $user=User::find($team->user_id);
-        echo $user;
-        Student::destroy($team->id);
-        User::destroy($user->id);
+        
+        Team::destroy($team->id);
         return redirect()->route('admins.teams.index');
     }
 }

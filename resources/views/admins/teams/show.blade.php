@@ -15,13 +15,17 @@
     <div class="pt-4">
         <div class="row mb-3">
             <div class="col-6">
+                <label for="exampleFormControlInput1" class="form-label">科系</label>
+                <input name="department" id="department" type="text" class="form-control-plaintext" readonly value="{{$array['department']}}">
+            </div>
+            <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">班級</label>
                 <input name="team" id="team" type="text" class="form-control-plaintext" readonly value="{{$array['team']}}">
             </div>
 
             <div class="col-6">
-                <label for="exampleFormControlInput1" class="form-label">科系</label>
-                <input name="department" id="department" type="text" class="form-control-plaintext" readonly value="{{$array['department']}}">
+                <label for="exampleFormControlInput1" class="form-label">入學年度</label>
+                <input name="admission" id="admission" type="text" class="form-control-plaintext" readonly value="{{$array['admission']}}">
             </div>
         </div>
 

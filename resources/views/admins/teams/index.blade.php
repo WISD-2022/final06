@@ -18,8 +18,8 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">班級</th>
                     <th scope="col">科系</th>
+                    <th scope="col">班級</th>
                     <th scope="col">功能</th>
                 </tr>
                 </thead>
@@ -28,8 +28,8 @@
                 @foreach($array as $array_item)<!--activities陣列內有幾筆資料就會重複執行幾次-->
                 <tr>
                     <th scope="row" style="width: 50px">{{ $array_item['id']}}</th><!--印出資料表內的id欄位-->
-                    <td>{{ $array_item['team'] }}</td>
                     <td>{{ $array_item['department'] }}</td>
+                    <td>{{ $array_item['team'] }}</td>
                     <td style="width: 150px">
                         <a href="{{route('admins.teams.show',$array_item['id'])}}" class="btn btn-primary btn-sm">詳細</a>
                         <form action="{{route('admins.teams.destroy',$array_item['id'])}}" method="post" style="display: inline-block">

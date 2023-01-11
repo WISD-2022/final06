@@ -17,21 +17,22 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <!--改為下拉式選單-->
-                    <label for="exampleFormControlInput1" class="form-label">班級</label>
-                    <select name="team" id="team" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        @foreach($teams as $team)
-                            <option value="{{$team->id}}">{{$team->class}}</option>
+                    <label for="exampleFormControlInput1" class="form-label">科系</label>
+                    <select name="department" id="department" class="form-select form-select" aria-label=".form-select example">
+                        @foreach($departments as $department)
+                            <option value="{{$department->id}}">{{$department->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-6">
                     <!--改為下拉式選單-->
-                    <label for="exampleFormControlInput1" class="form-label">科系</label>
-                    <select name="department" id="department" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        @foreach($departments as $department)
-                        <option value="{{$department->id}}">{{$department->name}}</option>
-                        @endforeach
-                    </select>
+                    <label for="exampleFormControlInput1" class="form-label">班級</label>
+                    <input name="team" id="team" type="text" class="form-control">
+                </div>
+                <div class="col-6">
+                    <!--改為下拉式選單-->
+                    <label for="exampleFormControlInput1" class="form-label">入學年度</label>
+                    <input name="admission" id="admission" type="text" class="form-control">
                 </div>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

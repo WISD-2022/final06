@@ -16,7 +16,7 @@
         <div class="pt-4">
             <div class="col-6">
                 <label for="exampleFormControlInput1" class="form-label">科系</label>
-                <input name="department" id="department" type="text" class="form-control">
+                <input name="department" id="department" type="text" class="form-control" value="{{$department->name}}">
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-primary btn-sm" type="submit">儲存</button>
