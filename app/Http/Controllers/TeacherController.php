@@ -36,16 +36,13 @@ class TeacherController extends Controller
                 echo $students;
                 foreach ($students as $student)
                 {
-                    $us = $student->user()->get();//透過student取得user的資料
-                    foreach ($us as $u)
+                    $leaves = $student->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
+                    foreach ($leaves as $leave)
                     {
-                        $leaves = $u->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
-                        foreach ($leaves as $leave)
-                        {
-                            $array = Arr::add($array, $count, $leave);
-                            $count++;
-                        }
+                        $array = Arr::add($array, $count, $leave);
+                        $count++;
                     }
+
                 }
             }
         }
@@ -77,16 +74,13 @@ class TeacherController extends Controller
                     echo $students;
                     foreach ($students as $student)
                     {
-                        $us = $student->user()->get();//透過student取得user的資料
-                        foreach ($us as $u)
+                        $leaves = $student->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
+                        foreach ($leaves as $leave)
                         {
-                            $leaves = $u->leave()->get();//$leaves=Leave::where('student_id','=',$student->department_id)->get();
-                            foreach ($leaves as $leave)
-                            {
-                                $array = Arr::add($array, $count, $leave);
-                                $count++;
-                            }
+                            $array = Arr::add($array, $count, $leave);
+                            $count++;
                         }
+
                     }
                 }
             }
@@ -95,7 +89,6 @@ class TeacherController extends Controller
      //取得學生id為1的假單
      $data=[
             'array'=>$array,
-            'leave'=>$leave,
       ];
       return view('teachers.uncheck',$data);
    }

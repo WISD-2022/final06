@@ -17,7 +17,14 @@ class LeaveFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'student_id'=>rand(1,11),
+            'application_date'=>$this->faker->date('y-m-d'),
+            'leave'=>rand(1,3),
+            'reason'=>$this->faker->text('200'),
+            'picture'=>'1.jpg',
+            'start_time'=>$this->faker->date('y-m-d'),
+            'end_time'=>$this->faker->date('y-m-d'),
+            'remark'=>$this->faker->text('200'),
         ];
     }
 }

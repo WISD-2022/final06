@@ -83,18 +83,6 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::delete('/{student}',[AccountStudentController::class,'destroy'])->name('destroy');//刪除學生帳號
     });
 
-    //班級管理
-    Route::prefix('teams')->name('teams.')->group(function(){
-        Route::get('/',[TeamController::class,'index'])->name('index');//班級列表
-        Route::get('/create',[TeamController::class,'create'])->name('create');//新增班級
-        Route::post('/',[TeamController::class,'store'])->name('store');//儲存班級
-        Route::get('/{team}',[TeamController::class,'show'])->name('show');//班級詳細資料
-        Route::delete('/{team}',[TeamController::class,'destroy'])->name('destroy');//刪除班級
-        Route::get('/{team}/edit',[TeamController::class,'edit'])->name('edit');//編輯班級
-        Route::patch('/{team}',[TeamController::class,'update'])->name('update');//更新班級
-    });
-
-
     //教師帳號管理
     Route::prefix('teachers')->name('teachers.')->group(function(){
         Route::get('/',[AccountTeacherController::class,'index'])->name('index');//教師帳號列表
@@ -106,6 +94,16 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::delete('/{teacher}',[AccountTeacherController::class,'destroy'])->name('destroy');//刪除教師帳號
     });
 
+    //班級管理
+    Route::prefix('teams')->name('teams.')->group(function(){
+        Route::get('/',[TeamController::class,'index'])->name('index');//班級列表
+        Route::get('/create',[TeamController::class,'create'])->name('create');//新增班級
+        Route::post('/',[TeamController::class,'store'])->name('store');//儲存班級
+        Route::get('/{team}',[TeamController::class,'show'])->name('show');//班級詳細資料
+        Route::delete('/{team}',[TeamController::class,'destroy'])->name('destroy');//刪除班級
+        Route::get('/{team}/edit',[TeamController::class,'edit'])->name('edit');//編輯班級
+        Route::patch('/{team}',[TeamController::class,'update'])->name('update');//更新班級
+    });
 
     //科系管理
     Route::prefix('departments')->name('departments.')->group(function(){
@@ -113,11 +111,10 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/create',[DepartmentController::class,'create'])->name('create');//新增科系
         Route::post('/',[DepartmentController::class,'store'])->name('store');//儲存科系
         Route::get('/{department}',[DepartmentController::class,'show'])->name('show');//科系詳細資料
-        Route::delete('/{department}',[DepartmentController::class,'destroy'])->name('destroy');//刪除科系
         Route::get('/{department}/edit',[DepartmentController::class,'edit'])->name('edit');//編輯科系
         Route::patch('/{department}',[DepartmentController::class,'update'])->name('update');//更新科系
+        Route::delete('/{department}',[DepartmentController::class,'destroy'])->name('destroy');//刪除科系
     });
-
 
     //管理員帳號管理
     Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表

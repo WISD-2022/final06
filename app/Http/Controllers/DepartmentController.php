@@ -19,31 +19,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $array=array();
-        $count=0;
-        $teachers=Teacher::all();//三維陣列
-        foreach ($teachers as $teacher) {
-            $teams = $teacher->team()->get();//三維
-            $users = $teacher->user()->get();
-            foreach ($teams as $team) {
-                $departments=$team->department()->get();
-                foreach ($departments as $department) {
-                    foreach ($users as $user) {
-                        //array為三維陣列
-                        //取得值得方式為，foreach($array as $array_item){$array_item['key值']}
-                        $array = Arr::add($array, $count, [
-                            //'key值'=>value
-                            'id'=>$teacher->id,
-                            'department' => $department->name,
-                            'team' => $team->class,
-                        ]);
-                        $count++;
-                    }
-                }
-            }
-        }
+       $department=Department::all();
         $data=[
-            'array'=>$array,
+            'department'=>$department,
         ];
         return view('admins.departments.index',$data);
     }
@@ -94,61 +72,17 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        $array=[];
-        $teams=$department->team()->get();
-        foreach ($teams as $team){
-            $teachers=$team->teacher()->get();
-            foreach ($teachers as $teacher){
-                $users=$teacher->user()->get();
-                foreach ($users as $user){
-                    $array=[
-                        'id'=>$teacher->id,
-                        'department'=>$department->name,
-                        'team'=>$team->class,
-                    ];
-                }
-            }
-        }
-        $data=[
-            'array'=>$array
-        ];
-        return view('admins.departments.show',$data);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Department $department)
     {
-        //取得班級名稱
-        $teams_all=Team::all();
-        //取得科系名稱
-        $departments_all=Department::all();
-        //取得欄位資料
-        $array=[];
-        $teams=$department->team()->get();
-        foreach ($teams as $team){
-            $teachers=$team->teacher()->get();
-            foreach ($teachers as $teacher){
-                $users=$teacher->user()->get();
-                foreach ($users as $user){
-                    $array=[
-                        'id'=>$user->id,
-                        'department'=>$department->name,
-                        'team'=>$team->class,
-                    ];
-                }
-            }
-        }
+
         $data=[
-            'array'=>$array,
-            'departments'=>$departments_all,
-            'teams'=>$teams_all,
+            'department'=>$department,
         ];
-        return view('admins.department.edit',$data);
+        echo 'OKK';
+        return view('admins.departments.edit',$data);
     }
 
     /**
@@ -162,8 +96,7 @@ class DepartmentController extends Controller
     {
         //儲存資料至teams
         $department->update([
-            'department_id'=>$request->department,
-            'team_id'=>$request->team,
+            'name'=>$request->department,
         ]);
         return redirect()->route('admins.departments.index');
     }
@@ -176,10 +109,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $user=User::find($department->user_id);
-        echo $user;
-        Student::destroy($department->id);
-        User::destroy($user->id);
+        Department::destroy($department->id);
         return redirect()->route('admins.departments.index');
     }
 }
