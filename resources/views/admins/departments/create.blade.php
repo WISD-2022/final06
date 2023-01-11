@@ -18,22 +18,8 @@
                 <div class="col-6">
                     <!--改為下拉式選單-->
                     <label for="exampleFormControlInput1" class="form-label">科系</label>
-                    <select name="department" id="department" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        @foreach($departments as $department)
-                            <option value="{{$department->id}}">{{$department->name}}</option>
-                        @endforeach
-                    </select>
+                    <input name="department" id="department" type="text" class="form-control">
                 </div>
-                <div class="col-6">
-                    <!--改為下拉式選單-->
-                    <label for="exampleFormControlInput1" class="form-label">班級</label>
-                    <select name="team" id="team" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        @foreach($teams as $team)
-                            <option value="{{$team->id}}">{{$team->class}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-primary btn-sm" type="submit">儲存</button>

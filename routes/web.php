@@ -117,7 +117,7 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/{department}/edit',[DepartmentController::class,'edit'])->name('edit');//編輯科系
         Route::patch('/{department}',[DepartmentController::class,'update'])->name('update');//更新科系
     });
-    
+
 
     //管理員帳號管理
     Route::get('/list',[AccountAdminController::class,'index'])->name('list');//管理員帳號列表

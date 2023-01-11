@@ -77,17 +77,11 @@ class DepartmentController extends Controller
         //資料驗證
         $this->validate($request,[
             'department'=>'required',
-            'team'=>'required',
         ]);
         echo $request->team;
-        //儲存資料至users
-        $user=User::create([
-            'type'=>'1',
-        ]);
         //儲存資料至teams
-        Team::create([
-            'team_id'=>$request->team,
-            'department_id'=>$request->department,
+        Department::create([
+            'name'=>$request->department,
         ]);
         return redirect()->route('admins.departments.index');
     }
