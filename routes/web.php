@@ -110,7 +110,6 @@ Route::prefix('admins')->name('admins.')->group(function(){
         Route::get('/',[DepartmentController::class,'index'])->name('index');//科系列表
         Route::get('/create',[DepartmentController::class,'create'])->name('create');//新增科系
         Route::post('/',[DepartmentController::class,'store'])->name('store');//儲存科系
-        Route::get('/{department}',[DepartmentController::class,'show'])->name('show');//科系詳細資料
         Route::get('/{department}/edit',[DepartmentController::class,'edit'])->name('edit');//編輯科系
         Route::patch('/{department}',[DepartmentController::class,'update'])->name('update');//更新科系
         Route::delete('/{department}',[DepartmentController::class,'destroy'])->name('destroy');//刪除科系

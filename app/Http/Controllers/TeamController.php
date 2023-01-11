@@ -167,7 +167,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        
+
         Team::destroy($team->id);
         return redirect()->route('admins.teams.index');
     }
