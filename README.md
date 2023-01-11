@@ -35,8 +35,8 @@
 ![image](https://user-images.githubusercontent.com/113490250/211630051-7ddfcc03-64f3-4198-a483-e8a67920535f.png)
 ### 新增班級、科系
 ![image](https://user-images.githubusercontent.com/113490250/211630277-8c8c7b93-0864-4312-b842-a153c5b7b5c0.png)
-### 班級、科系詳細資料
-![image](https://user-images.githubusercontent.com/113490250/211630342-be5833c4-f45d-4f61-b216-f2d62fdfa035.png)
+### 班級詳細資料
+![image](https://user-images.githubusercontent.com/113490250/211705264-53e6af08-fee2-41af-8b24-30119b88305d.png)
 
 ## 系統名稱及作用 
 ### 請假平台
@@ -59,7 +59,10 @@
 - 假單詳細資料Route::get('/{leave}',[TeacherController::class,'show'])->name('show');; [3A932113 楊淑媚](https://github.com/3A932113)
 - 審核完之假單Route::patch('/{leave}',[TeacherController::class,'update'])->name('update'); [3A932113 楊淑媚](https://github.com/3A932113)
 ### 管理員
-- 首頁Route::get('/',[AdminController::class,'index'])->name('index'); [3A932113 楊淑媚](https://github.com/3A932113)
+- 管理員首頁 [3A932113 楊淑媚](https://github.com/3A932113)
+<pre>
+首頁Route::get('/',[AdminController::class,'index'])->name('index');
+</pre>
 - 學生帳號管理 [3A932087 陳憶萱](https://github.com/3A932087)
 <pre>
 學生帳號列表Route::get('/',[AccountStudentController::class,'index'])->name('index');
